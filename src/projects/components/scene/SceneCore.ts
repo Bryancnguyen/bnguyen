@@ -14,13 +14,14 @@ class SceneCore {
   private meshes: Object3D[] = [];
   private components: ComponentType[] = [];
   private controls: OrbitControls | null = null;
+  private canvasWidth: number = 650;
+  private canvasHeight: number = 650;
 
   constructor(private canvas: HTMLElement) {
     // set up the scene
     this.scene = new Scene();
-    this.camera = new PerspectiveCamera( 90, window.innerWidth / window.innerHeight, 1, 10000 );
+    this.camera = new PerspectiveCamera( 90, this.canvasWidth / this.canvasHeight, 1, 10000 );
     this.renderer = new WebGLRenderer({ antialias: true, alpha: true });
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
   }
 
   public init = () => {
@@ -32,13 +33,16 @@ class SceneCore {
     light.castShadow = true;
     this.scene.add(light);
     // set scene color
-    this.scene.background = new Color(0x000);
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
+    this.scene.background = new Color(0x121212);
+    this.renderer.setSize(this.canvasWidth, this.canvasHeight);
 
     if (this.canvas) {
       this.canvas.appendChild(this.renderer.domElement);
     }
+    this.activate();
+  }
 
+  private activate() {
     // Boundaries will contain the entire group of objects inside it! Hierarchy!
     const boundaries = new Boundaries(this.camera);
     // static content
@@ -55,7 +59,7 @@ class SceneCore {
     // lazy load content
     this.loadObjects(boundaries);
 
-    // this.components = [matterportLogo];
+    this.components = [matterportLogo];
   }
 
   private createControls(camera: Camera, renderer: WebGLRenderer) {

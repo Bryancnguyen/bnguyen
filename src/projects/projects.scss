@@ -1,0 +1,36 @@
+#projects {
+  margin: 20px;
+
+  .projects-container {
+    padding: 0 20px 20px;
+  }
+
+  .current-project {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+
+    .project-name {
+      line-height: 30px;
+      margin: 0px 20px;
+    }
+
+    .click-next, .click-prev {
+      pointer-events: all;
+      cursor: pointer;
+      border: 2px solid rgba(255, 255, 255, 0.12);
+      padding: 3px 6px;
+      line-height: 20px;
+      border-radius: 50%;
+
+      .icon-next, .icon-prev {
+        line-height: 20px;
+      }
+    }
+
+    .click-next:hover, .click-prev:hover {
+      opacity: 0.4;
+      border: 2px solid rgba(255, 255, 255, 0.04);
+    }
+  }
+}

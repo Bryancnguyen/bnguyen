@@ -6,9 +6,9 @@ export class MatterportLogo implements ComponentType {
   private logo: Object3D;
   private tempGeometry: Mesh | null;
   private material: MeshPhongMaterial;
-  private currentLevitate: number = 0;
-  private maxLevitate: number = 200;
-  private goingUp: boolean = true;
+  // private currentLevitate: number = 0;
+  // private maxLevitate: number = 200;
+  // private goingUp: boolean = true;
   private rotations = [
     { x: 25, y: -43.05, z: 0 },
   ];
@@ -89,16 +89,16 @@ export class MatterportLogo implements ComponentType {
 
   // TODO: right now its spinning, I probably dont want that later
   public update() {
-    // this.logo.rotation.y -= 0.01;
-    if (parseFloat(this.currentLevitate.toFixed(1)) === this.maxLevitate) {
-      this.goingUp = false;
-    }
-    else if (parseFloat(this.currentLevitate.toFixed(1)) === 0) {
-      this.goingUp = true;
-    }
-    let addValue = this.goingUp ? 1 : -1;
-    this.logo.position.y += addValue;
-    this.currentLevitate += addValue;
+    this.logo.rotation.y -= 0.01;
+    // if (parseFloat(this.currentLevitate.toFixed(1)) === this.maxLevitate) {
+    //   this.goingUp = false;
+    // }
+    // else if (parseFloat(this.currentLevitate.toFixed(1)) === 0) {
+    //   this.goingUp = true;
+    // }
+    // let addValue = this.goingUp ? 1 : -1;
+    // this.logo.position.y += addValue;
+    // this.currentLevitate += addValue;
   }
 }
 

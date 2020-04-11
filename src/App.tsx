@@ -1,11 +1,22 @@
 import React from 'react';
-import './App.css';
-import SceneComponent from './components/scene/SceneComponent';
+import './index.scss';
+import './App.scss';
+import LeftColumn from './left-column/LeftColumn';
+import Projects from './projects/Projects';
+import Skills from './skills/Skills';
 
 function App() {
   return (
     <div className="App">
-      <SceneComponent/>
+      <div className='row'>
+        <div className='column'>
+          <LeftColumn/>
+          <Skills />
+        </div>
+        <div className='column'>
+          <Projects/>
+        </div>
+      </div>
     </div>
   );
 }
