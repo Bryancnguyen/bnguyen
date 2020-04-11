@@ -1,25 +1,25 @@
 import { Object3D } from 'three';
 import { GLTFLoader, GLTF } from 'three/examples/jsm/loaders/GLTFLoader';
 
-export class Desk {
+export class Bedroom {
   constructor(private addSceneNode: (obj: Object3D) => void) {
 
   }
 
-  public createDesk() {
+  public createBedroom() {
     const loader = new GLTFLoader();
-    loader.load('/assets/desk/scene.gltf', (obj: GLTF) => this.onLoad(obj));
+    loader.load('/assets/bedroom/scene.gltf', (obj: GLTF) => this.onLoad(obj));
   }
 
   private onLoad(obj: GLTF) {
-    obj.scene.position.x = 1000;
-    obj.scene.position.y = 650;
+    obj.scene.position.x = -800;
+    obj.scene.position.z = 100;
+    obj.scene.position.y = 800;
     obj.scene.rotation.x = - Math.PI / 2;
     obj.scene.rotation.z = - Math.PI;
-    obj.scene.rotation.y = - Math.PI / 2;
-    obj.scene.scale.set(2.2, 2.2, 2.2);
+    obj.scene.scale.set(13, 13, 13);
     this.addSceneNode(obj.scene);
   }
 }
 
-export default Desk;
+export default Bedroom;

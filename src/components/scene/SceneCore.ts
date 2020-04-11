@@ -1,9 +1,10 @@
 
 import { Scene, PerspectiveCamera, Color, WebGLRenderer, Object3D, Camera, SpotLight } from 'three';
-import MatterportLogo from '../matterport-logo/MatterportLogo';
+// import MatterportLogo from '../matterport-logo/MatterportLogo';
 import Boundaries from '../boundaries/Boundaries';
 import ComponentType from '../ComponentType';
 import Desk from '../desk/Desk';
+import Bedroom from '../bedroom/Bedroom';
 
 class SceneCore {
   private camera: Camera;
@@ -23,11 +24,12 @@ class SceneCore {
   public init = () => {
     this.camera.position.set( 0, 0, 2500 );
     this.scene.add(this.camera);
-    const light = new SpotLight(0xffffed, 2);
+    const light = new SpotLight(0xFBEEE4, 1.5);
     light.position.copy(this.camera.position);
     light.castShadow = true;
     this.scene.add(light);
-    this.scene.background = new Color(0x222222);
+    // set scene color
+    this.scene.background = new Color(0x000);
     this.renderer.setSize(window.innerWidth, window.innerHeight);
 
     if (this.canvas) {
@@ -37,27 +39,31 @@ class SceneCore {
     // Boundaries will contain the entire group of objects inside it! Hierarchy!
     const boundaries = new Boundaries(this.camera);
     // static content
-    const matterportLogo = new MatterportLogo();
-    matterportLogo.container.position.set(100, 100, -100);
-    boundaries.container.add(matterportLogo.container);
+    // const matterportLogo = new MatterportLogo();
+    // matterportLogo.container.position.set(0, 0, 600);
+    // matterportLogo.container.rotation.x = -Math.PI / 1.5;
+    // boundaries.addToFloor(matterportLogo.container);
     this.addSceneNode(boundaries.container);
 
     // lazy load content
-    this.loadObjects();
+    this.loadObjects(boundaries);
 
-    this.components = [matterportLogo];
+    // this.components = [matterportLogo];
   }
 
-  private loadObjects() {
-    const desk = new Desk(this.addSceneNode);
+  private loadObjects(boundaries: Boundaries) {
+    const desk = new Desk(boundaries.addToFloor);
     desk.createDesk();
+
+    const bedroom = new Bedroom(boundaries.addToFloor);
+    bedroom.createBedroom();
   }
 
   /**
    * Function to allow adding to scene
    * @param node 
    */
-  public addSceneNode(node: Object3D) {
+  public addSceneNode = (node: Object3D) => {
     this.scene.add(node);
   }
 

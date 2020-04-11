@@ -6,21 +6,25 @@ export class Boundaries {
   private material: MeshBasicMaterial;
   private materialTransparent: MeshBasicMaterial;
   private floorMaterial: MeshBasicMaterial;
+  private floor: Object3D | null = null;
   constructor(private camera: Camera) {
     const loader = new TextureLoader();
-    const floorTexture = loader.load(require('./../../textures/common_floor.png'));
+    const floorTexture = loader.load('assets/textures/a_flooring2.png');
     floorTexture.wrapS = floorTexture.wrapT = RepeatWrapping;
-    floorTexture.repeat.set( 2, 2 );
+    floorTexture.repeat.set( 6, 6 );
     floorTexture.anisotropy = 16;
     floorTexture.encoding = sRGBEncoding;
     this.floorMaterial = new MeshLambertMaterial({
       map: floorTexture,
     });
+    const wallTexture = loader.load('assets/textures/wall5.jpg');
+    wallTexture.wrapS = wallTexture.wrapT = RepeatWrapping;
+    wallTexture.repeat.set( 2, 2 );
+    wallTexture.anisotropy = 16;
+    wallTexture.encoding = sRGBEncoding;
     this.wallMaterial = new MeshLambertMaterial({
-      color: 0xCFA880,
-      transparent: true,
       side: DoubleSide,
-      opacity: 0.8,
+      map: wallTexture,
     });
     this.material = new MeshLambertMaterial({
       color: 0xFF3158,
@@ -37,13 +41,14 @@ export class Boundaries {
     const root = new Object3D();
     const walls = this.createWallMeshes();
     this.positionWalls(walls);
-    const floor = this.createFloor();
-    this.positionFloor(floor);
-    walls.add(floor);
-    // const wall1 = this.createFlatBox();
-    // this.rotateWall1(wall1);
-    // const wall2 = this.createFlatBox();
-    // this.positionWall2(wall2);
+    this.floor = this.createFloor();
+    this.positionFloor(this.floor);
+    walls.add(this.floor);
+
+    // create Entrance
+    // const entrance = this.createEntrance();
+    // root.add(entrance);
+
     root.add(walls);
 
     // floor.add(wall1);
@@ -65,6 +70,17 @@ export class Boundaries {
       this.wallMaterial, this.materialTransparent, this.materialTransparent, this.materialTransparent]);
     mesh.receiveShadow = true;
     return mesh;
+  }
+
+  // private createEntrance() {
+  //   const geometry = new PlaneBufferGeometry(500, 100);
+  //   const mesh = new Mesh(geometry, [this.])
+  // }
+
+  public addToFloor = (obj: Object3D) => {
+    if (this.floor) {
+      this.floor.add(obj);
+    }
   }
 
   private createFlatBox() {
