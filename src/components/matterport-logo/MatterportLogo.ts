@@ -49,7 +49,7 @@ export class MatterportLogo implements ComponentType {
     });
     this.logo = this.createMeshLogo();
     this.tempGeometry = null;
-    this.logo.scale.copy(new Vector3(14, 14, 14));
+    this.logo.scale.copy(new Vector3(50, 50, 50));
   }
 
   public get container() {

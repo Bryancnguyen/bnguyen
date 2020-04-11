@@ -1,10 +1,11 @@
 
-import { Scene, PerspectiveCamera, Color, WebGLRenderer, Object3D, Camera, SpotLight } from 'three';
-// import MatterportLogo from '../matterport-logo/MatterportLogo';
+import { Scene, PerspectiveCamera, Color, WebGLRenderer, Object3D, Camera, DirectionalLight } from 'three';
+import MatterportLogo from '../matterport-logo/MatterportLogo';
 import Boundaries from '../boundaries/Boundaries';
 import ComponentType from '../ComponentType';
 import Desk from '../desk/Desk';
 import Bedroom from '../bedroom/Bedroom';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 class SceneCore {
   private camera: Camera;
@@ -12,6 +13,7 @@ class SceneCore {
   private renderer: WebGLRenderer;
   private meshes: Object3D[] = [];
   private components: ComponentType[] = [];
+  private controls: OrbitControls | null = null;
 
   constructor(private canvas: HTMLElement) {
     // set up the scene
@@ -24,7 +26,8 @@ class SceneCore {
   public init = () => {
     this.camera.position.set( 0, 0, 2500 );
     this.scene.add(this.camera);
-    const light = new SpotLight(0xFBEEE4, 1.5);
+    // const light = new SpotLight(0xFBEEE4, 1.5);
+    const light = new DirectionalLight(0xFFFFFF, 2.5);
     light.position.copy(this.camera.position);
     light.castShadow = true;
     this.scene.add(light);
@@ -39,16 +42,33 @@ class SceneCore {
     // Boundaries will contain the entire group of objects inside it! Hierarchy!
     const boundaries = new Boundaries(this.camera);
     // static content
-    // const matterportLogo = new MatterportLogo();
+    const matterportLogo = new MatterportLogo();
     // matterportLogo.container.position.set(0, 0, 600);
     // matterportLogo.container.rotation.x = -Math.PI / 1.5;
     // boundaries.addToFloor(matterportLogo.container);
-    this.addSceneNode(boundaries.container);
+    this.addSceneNode(matterportLogo.container);
+    // this.addSceneNode(boundaries.container);
+
+    // create controls
+    this.createControls(this.camera, this.renderer);
 
     // lazy load content
     this.loadObjects(boundaries);
 
     // this.components = [matterportLogo];
+  }
+
+  private createControls(camera: Camera, renderer: WebGLRenderer) {
+    this.controls = new OrbitControls( camera, renderer.domElement );
+    this.controls.enableDamping = true;
+    this.controls.dampingFactor = 0.05;
+
+    this.controls.screenSpacePanning = false;
+
+    this.controls.minDistance = 1000;
+    this.controls.maxDistance = 5000;
+
+    this.controls.maxPolarAngle = Math.PI / 2;
   }
 
   private loadObjects(boundaries: Boundaries) {
@@ -83,7 +103,13 @@ class SceneCore {
    */
   public animate = () => {
     requestAnimationFrame(this.animate);
+    // render scene
     this.renderScene();
+    // update controls!
+    if (this.controls) {
+      this.controls.update();
+    }
+    // call each components individual update loop
     this.components.forEach((c: ComponentType) => {
       c.update();
     });
