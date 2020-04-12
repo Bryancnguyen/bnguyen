@@ -16,8 +16,10 @@ class SceneCore {
   private controls: OrbitControls | null = null;
   private canvasWidth: number = 650;
   private canvasHeight: number = 650;
+  private currentNode: Object3D | null = null;
+  private sceneProjects = ['matterport-logo', 'animal-crossing'];
 
-  constructor(private canvas: HTMLElement) {
+  constructor(private canvas: HTMLElement, private currentProject: string) {
     // set up the scene
     this.scene = new Scene();
     this.camera = new PerspectiveCamera( 90, this.canvasWidth / this.canvasHeight, 1, 10000 );
@@ -40,6 +42,18 @@ class SceneCore {
       this.canvas.appendChild(this.renderer.domElement);
     }
     this.activate();
+  }
+
+  public next() {
+    if (this.sceneProjects.includes(this.currentProject)) {
+      console.log(this.currentProject);
+    }
+  }
+
+  public prev() {
+    if (this.sceneProjects.includes(this.currentProject)) {
+      // this.prev();
+    }
   }
 
   private activate() {
@@ -88,7 +102,13 @@ class SceneCore {
    * @param node 
    */
   public addSceneNode = (node: Object3D) => {
+    if (this.currentNode) this.removeSceneNode(this.currentNode);
+    this.currentNode = node;
     this.scene.add(node);
+  }
+
+  public removeSceneNode = (node: Object3D) => {
+    this.scene.remove(node);
   }
 
   /**

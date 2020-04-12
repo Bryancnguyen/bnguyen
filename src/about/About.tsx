@@ -1,8 +1,8 @@
 import React from 'react';
-import './skills.scss';
+import './about.scss';
 import Panel from '../panel/Panel';
 
-class Skills extends React.Component {
+class About extends React.Component {
   constructor(props: {}) {
     super(props);
     this.state = {};
@@ -10,11 +10,11 @@ class Skills extends React.Component {
 
   render() {
     return (
-    <div id='skills'>
-      <Panel title={'Skills'}>
+    <div id='about'>
+      <Panel title={'About Me'}>
       </Panel>
     </div>);
   }
 }
 
-export default Skills;
+export default About;

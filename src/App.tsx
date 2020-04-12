@@ -3,7 +3,8 @@ import './index.scss';
 import './App.scss';
 import LeftColumn from './left-column/LeftColumn';
 import Projects from './projects/Projects';
-import Skills from './skills/Skills';
+import WorkExp from './work-exp/WorkExp';
+import About from './about/About';
 
 function App() {
   return (
@@ -11,10 +12,11 @@ function App() {
       <div className='row'>
         <div className='column'>
           <LeftColumn/>
-          <Skills />
+          <WorkExp />
         </div>
         <div className='column'>
           <Projects/>
+          <About/>
         </div>
       </div>
     </div>

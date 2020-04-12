@@ -11,6 +11,7 @@ class ContactInfo extends React.Component<ContactInfoProps, {}> {
     return (
     <div id='contact-info'>
       <a className='email' href='mailto:bryancanhnguyen@gmail.com'>{this.props.contactInfo}</a>
+      <a className='linkedin' href='https://www.linkedin.com/in/bryancnguyen/' target='_blank' rel='noopener noreferrer'>LinkedIn</a>
     </div>);
   }
 }

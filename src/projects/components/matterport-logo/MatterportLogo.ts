@@ -3,6 +3,7 @@ import { degreesToRadians } from '../utils/degreesToRadians';
 import ComponentType from '../ComponentType';
 
 export class MatterportLogo implements ComponentType {
+  public readonly name = 'matterport-logo';
   private logo: Object3D;
   private tempGeometry: Mesh | null;
   private material: MeshPhongMaterial;
