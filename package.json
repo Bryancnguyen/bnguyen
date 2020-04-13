@@ -1,4 +1,5 @@
 {
+  "homepage": "http://bnguyen.github.io/bryan-web-resume",
   "name": "bryan-web-resume",
   "version": "0.1.0",
   "private": true,
@@ -73,7 +74,9 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -90,7 +93,9 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "gh-pages": "^2.2.0"
+  },
   "jest": {
     "roots": [
       "<rootDir>/src"

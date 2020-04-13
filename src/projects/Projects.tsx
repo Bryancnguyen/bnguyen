@@ -5,6 +5,10 @@ import SceneComponent from './components/scene/SceneComponent';
 
 class Projects extends React.Component<{}, ProjectsState> {
   private projects = ['matterport-logo', 'animal-crossing'];
+  private projectsMap: {[key: number]: string} = {
+    0: 'Matterport Logo',
+    1: 'Animal Crossing in Three'
+  }
 
   constructor(props: {}) {
     super(props);
@@ -35,7 +39,7 @@ class Projects extends React.Component<{}, ProjectsState> {
               <span className='bryan icon-prev'/>
             </div>
             }
-            <span className='project-name'>Matterport Logo</span>
+            <span className='project-name'>{this.projectsMap[this.state.currentProjectCount]}</span>
             {
               this.state.currentProjectCount !== this.projects.length - 1 &&
               <div className='click-next' onClick={this.onNext}>

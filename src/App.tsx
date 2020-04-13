@@ -4,7 +4,7 @@ import './App.scss';
 import LeftColumn from './left-column/LeftColumn';
 import Projects from './projects/Projects';
 import WorkExp from './work-exp/WorkExp';
-import About from './about/About';
+// import About from './about/About';
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
         </div>
         <div className='column'>
           <Projects/>
-          <About/>
+          {/* <About/> */}
         </div>
       </div>
     </div>
