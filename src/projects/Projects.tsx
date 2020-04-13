@@ -15,11 +15,11 @@ class Projects extends React.Component<{}, ProjectsState> {
   }
 
   private onNext = () => {
-    this.setState((prevState: ProjectsState) => ({slideDirection: 'next', currentProjectCount: prevState.currentProjectCount += 1}));
+    this.setState((prevState: ProjectsState) => ({slideDirection: 'next', currentProjectCount: prevState.currentProjectCount++}));
   }
 
   private onPrev = () => {
-    this.setState((prevState: ProjectsState) => ({slideDirection: 'prev', currentProjectCount: prevState.currentProjectCount -= 1}));
+    this.setState((prevState: ProjectsState) => ({slideDirection: 'prev', currentProjectCount: prevState.currentProjectCount--}));
   }
 
   render() {
@@ -29,13 +29,19 @@ class Projects extends React.Component<{}, ProjectsState> {
         <div className='projects-container'>
           <SceneComponent slideDirection={this.state.slideDirection} currentProject={this.projects[this.state.currentProjectCount]}/>
           <div className='current-project'>
+            {
+            this.state.currentProjectCount !== 0 &&
             <div className='click-prev' onClick={this.onPrev}>
               <span className='bryan icon-prev'/>
             </div>
+            }
             <span className='project-name'>Matterport Logo</span>
-            <div className='click-next' onClick={this.onNext}>
-              <span className='bryan icon-next'/>
-            </div>
+            {
+              this.state.currentProjectCount !== this.projects.length - 1 &&
+              <div className='click-next' onClick={this.onNext}>
+                <span className='bryan icon-next'/>
+              </div>
+            }
           </div>
         </div>
       </Panel>

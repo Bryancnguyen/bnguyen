@@ -14,24 +14,18 @@ class SceneComponent extends React.Component<SceneComponentProps, {}> {
   }
 
   public componentDidUpdate(nextProps: SceneComponentProps) {
-    if (nextProps.currentProject === this.props.currentProject || nextProps.slideDirection === this.props.slideDirection) return;
-    if (nextProps.slideDirection !== this.props.slideDirection) {
-      this.updateSlideDirection();
-    }
+    if (nextProps.currentProject === this.props.currentProject) return;
+    this.updateSlideDirection();
   }
 
   private updateSlideDirection() {
     if (!this.sceneCore) return;
-    if (this.props.slideDirection === 'next') {
-      this.sceneCore.next();
-    } else if (this.props.slideDirection === 'prev') {
-      this.sceneCore.prev();
-    }
+    this.sceneCore.updateProject(this.props.currentProject);
   }
 
   public componentDidMount() {
     const canvas = document.getElementById('canvas')!;
-    this.sceneCore = new SceneCore(canvas, this.props.currentProject);
+    this.sceneCore = new SceneCore(canvas);
     this.sceneCore.init();
     this.sceneCore.animate();
   }

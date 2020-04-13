@@ -11,15 +11,15 @@ class SceneCore {
   private camera: Camera;
   private scene: Scene;
   private renderer: WebGLRenderer;
-  private meshes: Object3D[] = [];
   private components: ComponentType[] = [];
   private controls: OrbitControls | null = null;
   private canvasWidth: number = 650;
   private canvasHeight: number = 650;
-  private currentNode: Object3D | null = null;
+  private currentScene: string = '';
   private sceneProjects = ['matterport-logo', 'animal-crossing'];
+  private sceneObjMap: {[nodeName: string]: Object3D} = {};
 
-  constructor(private canvas: HTMLElement, private currentProject: string) {
+  constructor(private canvas: HTMLElement) {
     // set up the scene
     this.scene = new Scene();
     this.camera = new PerspectiveCamera( 90, this.canvasWidth / this.canvasHeight, 1, 10000 );
@@ -44,15 +44,13 @@ class SceneCore {
     this.activate();
   }
 
-  public next() {
-    if (this.sceneProjects.includes(this.currentProject)) {
-      console.log(this.currentProject);
-    }
-  }
-
-  public prev() {
-    if (this.sceneProjects.includes(this.currentProject)) {
-      // this.prev();
+  public updateProject(projectName: string) {
+    if (!this.sceneProjects.includes(projectName)) {
+      // if the project doesn't exist, it's probably because its not a threejs Project, so go ahead hide
+      this.scene.visible = false;
+    } else {
+      // if the project does exist, find the object and update its visibility in our scene
+      this.currentScene = projectName;
     }
   }
 
@@ -61,11 +59,12 @@ class SceneCore {
     const boundaries = new Boundaries(this.camera);
     // static content
     const matterportLogo = new MatterportLogo();
-    // matterportLogo.container.position.set(0, 0, 600);
-    // matterportLogo.container.rotation.x = -Math.PI / 1.5;
-    // boundaries.addToFloor(matterportLogo.container);
-    this.addSceneNode(matterportLogo.container);
-    // this.addSceneNode(boundaries.container);
+ 
+    this.addSceneNode(matterportLogo.container, matterportLogo.name);
+    this.addSceneNode(boundaries.container, boundaries.name);
+
+    // show the matterport logo as its the first project
+    this.currentScene = matterportLogo.name;
 
     // create controls
     this.createControls(this.camera, this.renderer);
@@ -101,14 +100,11 @@ class SceneCore {
    * Function to allow adding to scene
    * @param node 
    */
-  public addSceneNode = (node: Object3D) => {
-    if (this.currentNode) this.removeSceneNode(this.currentNode);
-    this.currentNode = node;
+  public addSceneNode = (node: Object3D, componentName: string) => {
+    // start out not visible
+    node.visible = false;
     this.scene.add(node);
-  }
-
-  public removeSceneNode = (node: Object3D) => {
-    this.scene.remove(node);
+    this.sceneObjMap[componentName] = node;
   }
 
   /**
@@ -137,6 +133,14 @@ class SceneCore {
     this.components.forEach((c: ComponentType) => {
       c.update();
     });
+
+    for (let [key, value] of Object.entries(this.sceneObjMap)) {
+      if (key === this.currentScene) {
+        value.visible = true;
+      } else {
+        value.visible = false;
+      }
+    }
   }
 }
 

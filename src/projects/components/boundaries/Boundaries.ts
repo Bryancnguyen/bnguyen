@@ -1,6 +1,8 @@
 import { Object3D, Mesh, Vector3, MeshLambertMaterial, TextureLoader, sRGBEncoding, RepeatWrapping, PlaneBufferGeometry, DoubleSide, MeshBasicMaterial, Camera, BoxBufferGeometry } from 'three';
+import ComponentType from '../ComponentType';
 
-export class Boundaries {
+export class Boundaries implements ComponentType {
+  public readonly name = 'animal-crossing';
   private boundaries: Object3D;
   private wallMaterial: MeshLambertMaterial;
   private material: MeshBasicMaterial;
@@ -104,6 +106,8 @@ export class Boundaries {
   public get container() {
     return this.boundaries;
   }
+
+  public update() {}
 }
 
 export default Boundaries;
