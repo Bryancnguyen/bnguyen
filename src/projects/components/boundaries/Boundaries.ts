@@ -30,7 +30,7 @@ export class Boundaries implements ComponentType {
     });
     this.material = new MeshLambertMaterial({
       color: 0xFF3158,
-      // transparent: true,
+      transparent: true,
       side: DoubleSide,
       opacity: 0.8,
     });

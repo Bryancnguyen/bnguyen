@@ -19,11 +19,11 @@ class Projects extends React.Component<{}, ProjectsState> {
   }
 
   private onNext = () => {
-    this.setState((prevState: ProjectsState) => ({slideDirection: 'next', currentProjectCount: prevState.currentProjectCount++}));
+    this.setState((prevState: ProjectsState) => ({slideDirection: 'next', currentProjectCount: prevState.currentProjectCount + 1}));
   }
 
   private onPrev = () => {
-    this.setState((prevState: ProjectsState) => ({slideDirection: 'prev', currentProjectCount: prevState.currentProjectCount--}));
+    this.setState((prevState: ProjectsState) => ({slideDirection: 'prev', currentProjectCount: prevState.currentProjectCount - 1}));
   }
 
   render() {

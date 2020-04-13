@@ -1,5 +1,5 @@
 
-import { Scene, PerspectiveCamera, Color, WebGLRenderer, Object3D, Camera, DirectionalLight } from 'three';
+import { Scene, PerspectiveCamera, Color, WebGLRenderer, Object3D, Camera, SpotLight, DirectionalLight } from 'three';
 import MatterportLogo from '../matterport-logo/MatterportLogo';
 import Boundaries from '../boundaries/Boundaries';
 import ComponentType from '../ComponentType';
@@ -29,11 +29,6 @@ class SceneCore {
   public init = () => {
     this.camera.position.set( 0, 0, 2500 );
     this.scene.add(this.camera);
-    // const light = new SpotLight(0xFBEEE4, 1.5);
-    const light = new DirectionalLight(0xFFFFFF, 2.5);
-    light.position.copy(this.camera.position);
-    light.castShadow = true;
-    this.scene.add(light);
     // set scene color
     this.scene.background = new Color(0x121212);
     this.renderer.setSize(this.canvasWidth, this.canvasHeight);
@@ -57,8 +52,18 @@ class SceneCore {
   private activate() {
     // Boundaries will contain the entire group of objects inside it! Hierarchy!
     const boundaries = new Boundaries(this.camera);
-    // static content
     const matterportLogo = new MatterportLogo();
+
+    // TODO: move this light creation some where else
+    const matterportLogoLight = new DirectionalLight(0xFFFFFF, 2.5);
+    matterportLogoLight.position.copy(this.camera.position);
+    matterportLogoLight.castShadow = true;
+    matterportLogo.container.add(matterportLogoLight)
+
+    const animalCrossLight = new SpotLight(0xFBEEE4, 1.5);
+    animalCrossLight.position.copy(this.camera.position);
+    animalCrossLight.castShadow = true;
+    boundaries.container.add(animalCrossLight);
  
     this.addSceneNode(matterportLogo.container, matterportLogo.name);
     this.addSceneNode(boundaries.container, boundaries.name);

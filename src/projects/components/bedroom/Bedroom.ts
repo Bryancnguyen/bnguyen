@@ -8,7 +8,7 @@ export class Bedroom {
 
   public createBedroom() {
     const loader = new GLTFLoader();
-    loader.load('/assets/bedroom/scene.gltf', (obj: GLTF) => this.onLoad(obj));
+    loader.load(`${process.env.PUBLIC_URL}/assets/bedroom/scene.gltf`, (obj: GLTF) => this.onLoad(obj));
   }
 
   private onLoad(obj: GLTF) {

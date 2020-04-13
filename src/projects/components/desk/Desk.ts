@@ -8,7 +8,7 @@ export class Desk {
 
   public createDesk() {
     const loader = new GLTFLoader();
-    loader.load('/assets/desk/scene.gltf', (obj: GLTF) => this.onLoad(obj));
+    loader.load(`${process.env.PUBLIC_URL}/assets/desk/scene.gltf`, (obj: GLTF) => this.onLoad(obj));
   }
 
   private onLoad(obj: GLTF) {

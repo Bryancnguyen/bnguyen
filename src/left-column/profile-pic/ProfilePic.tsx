@@ -10,7 +10,7 @@ class ProfilePic extends React.Component<ProfilePicProps, {}> {
   render() {
     return (
     <div id='profile-pic'>
-      <img alt={this.props.profileAlt} src={`${process.env.PUBLIC_URL}images/${this.props.profileSrc}`}/>
+      <img alt={this.props.profileAlt} src={`${process.env.PUBLIC_URL}/images/${this.props.profileSrc}`}/>
     </div>);
   }
 }
