@@ -24,6 +24,7 @@ class Pie extends React.Component<PieProps, PieState> {
     this.clickTimeout = window.setTimeout(() => {
       this.setState({pieClicked: false});
     }, 500);
+    if (this.props.onClick) this.props.onClick();
   }
 
   private renderCircleElements() {

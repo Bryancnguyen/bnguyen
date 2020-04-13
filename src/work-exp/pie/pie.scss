@@ -36,7 +36,7 @@
   }
 
   .circle-bg-clicked {
-    fill: rgba(0, 0, 0, .7);
+    fill: rgba(0, 0, 0, .4);
     opacity: 0;
     transition: all 0.8s;
     cursor: pointer;
@@ -54,7 +54,7 @@
     fill: none;
     stroke-width: 1;
     stroke-linecap: round;
-    animation: progress 1s ease-out forwards;
+    animation: progress 2s ease-out forwards;
   }
 
   &.pieHover {

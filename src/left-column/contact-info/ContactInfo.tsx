@@ -10,8 +10,15 @@ class ContactInfo extends React.Component<ContactInfoProps, {}> {
   render() {
     return (
     <div id='contact-info'>
-      <a className='email' href='mailto:bryancanhnguyen@gmail.com'>{this.props.contactInfo}</a>
-      <a className='linkedin' href='https://www.linkedin.com/in/bryancnguyen/' target='_blank' rel='noopener noreferrer'>LinkedIn</a>
+      <div>
+        <a className='linkedin' href='https://www.linkedin.com/in/bryancnguyen/' target='_blank' rel='noopener noreferrer'>LinkedIn</a>
+      </div>
+      <div>
+        <a className='github' href='https://github.com/Bryancnguyen' target='_blank' rel='noopener noreferrer'>Github</a>
+      </div>
+      <div>
+        <a className='email' href='mailto:bryancanhnguyen@gmail.com'>{this.props.contactInfo}</a>
+      </div>
     </div>);
   }
 }

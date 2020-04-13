@@ -1,0 +1,17 @@
+/* mixins */
+@import '../../mixins/elevation.scss';
+
+.badges {
+  margin: 15px 0px;
+
+  .badge {
+    background-color: #00BFA5;
+    padding: 8px;
+    font-size: 10px;
+    font-weight: 600;
+    border-radius: 50px;
+    margin: 5px;
+
+    @include BoxShadow(16);
+  }
+}
