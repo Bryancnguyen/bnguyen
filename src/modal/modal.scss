@@ -1,7 +1,4 @@
 .modal {
-  height: 100%;
-  width: 100%;
-
   .modal-overlay {
     height: 100%;
     width: 100%;
@@ -62,9 +59,9 @@
     }
 
     .icon-down {
-      position: fixed;
+      position: absolute;
       color: #fff;
-      right: 10px;
+      left: 50%;
       font-size: 25px;
 
       animation: bounce 0.5s infinite alternate;

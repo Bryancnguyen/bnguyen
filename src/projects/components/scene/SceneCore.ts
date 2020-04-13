@@ -13,8 +13,8 @@ class SceneCore {
   private renderer: WebGLRenderer;
   private components: ComponentType[] = [];
   private controls: OrbitControls | null = null;
-  private canvasWidth: number = 650;
-  private canvasHeight: number = 650;
+  private canvasWidth: number = 500;
+  private canvasHeight: number = 500;
   private currentScene: string = '';
   private sceneProjects = ['matterport-logo', 'animal-crossing'];
   private sceneObjMap: {[nodeName: string]: Object3D} = {};
