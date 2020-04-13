@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/bryan-web-resume/static/css/main.0d45c96f.chunk.css",
+    "main.js": "/bryan-web-resume/static/js/main.2005d161.chunk.js",
+    "main.js.map": "/bryan-web-resume/static/js/main.2005d161.chunk.js.map",
+    "runtime-main.js": "/bryan-web-resume/static/js/runtime-main.bc53d200.js",
+    "runtime-main.js.map": "/bryan-web-resume/static/js/runtime-main.bc53d200.js.map",
+    "static/js/2.9d085c32.chunk.js": "/bryan-web-resume/static/js/2.9d085c32.chunk.js",
+    "static/js/2.9d085c32.chunk.js.map": "/bryan-web-resume/static/js/2.9d085c32.chunk.js.map",
+    "index.html": "/bryan-web-resume/index.html",
+    "precache-manifest.7e96d0379243cae711ba54979631c1b6.js": "/bryan-web-resume/precache-manifest.7e96d0379243cae711ba54979631c1b6.js",
+    "service-worker.js": "/bryan-web-resume/service-worker.js",
+    "static/css/main.0d45c96f.chunk.css.map": "/bryan-web-resume/static/css/main.0d45c96f.chunk.css.map",
+    "static/js/2.9d085c32.chunk.js.LICENSE.txt": "/bryan-web-resume/static/js/2.9d085c32.chunk.js.LICENSE.txt",
+    "static/media/style.scss": "/bryan-web-resume/static/media/bryan-web.ce2c4e9d.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.bc53d200.js",
+    "static/js/2.9d085c32.chunk.js",
+    "static/css/main.0d45c96f.chunk.css",
+    "static/js/main.2005d161.chunk.js"
+  ]
+}
