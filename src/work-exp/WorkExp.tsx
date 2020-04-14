@@ -23,7 +23,7 @@ class WorkExp extends React.Component<{}, WorkExpState> {
   };
 
   private calculatePercentage(months: number) {
-    const totalMonths = 90;
+    const totalMonths = 81;
     const monthPercentage = (months / totalMonths) * 100;
     return monthPercentage;
   }
@@ -48,7 +48,7 @@ class WorkExp extends React.Component<{}, WorkExpState> {
       "Karma",
     ];
 
-    const ellieMaeDevInternExp = this.calculatePercentage(22);
+    const ellieMaeDevInternExp = this.calculatePercentage(13);
     const ellieMaeDevInternBadges = [
       "AngularJS",
       "Wordpress",
@@ -106,7 +106,7 @@ class WorkExp extends React.Component<{}, WorkExpState> {
               <div className="header">Ellie Mae</div>
               <div className="sub-header">Software Engineer I / II</div>
               <ExpBar
-                text={"1 Year 5 months"}
+                text={"1 Year 5 Months"}
                 color={"#8dffa2"}
                 percentage={ellieMaeDevExp}
               />
@@ -135,7 +135,7 @@ class WorkExp extends React.Component<{}, WorkExpState> {
               <div className="header">Ellie Mae</div>
               <div className="sub-header">Software Engineer Dev Intern</div>
               <ExpBar
-                text={"1 Year 10 months"}
+                text={"1 Year 1 Months"}
                 color={"#ffa28d"}
                 percentage={ellieMaeDevInternExp}
               />

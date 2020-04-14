@@ -49,7 +49,7 @@ class Pie extends React.Component<PieProps, PieState> {
       c: 100,
       viewSize: 40,
       className: 'circle',
-      percentage: this.calculatePercentage(22),
+      percentage: this.calculatePercentage(13),
       color: '#0AE6E5',
     }, {
       c: 100,
@@ -103,7 +103,7 @@ class Pie extends React.Component<PieProps, PieState> {
   }
 
   private calculatePercentage(months: number) {
-    const totalMonths = 90;
+    const totalMonths = 81;
     const monthPercentage = (months / totalMonths) * 100;
 
     return monthPercentage;
@@ -126,7 +126,7 @@ class Pie extends React.Component<PieProps, PieState> {
     <div id='pie' className={this.state.pieHover ? 'pieHover': ''} onMouseOver={this.onMouseOver} onMouseOut={this.onMouseOut}>
       <svg viewBox="0 0 40 40" className="circular-chart">
       {this.renderCircleElements()}
-      <text x="20" y="22" className="percentage" onClick={this.onClick}>~5Y</text>
+      <text x="20" y="22" className="percentage" onClick={this.onClick}>~7Y</text>
     </svg>
     </div>);
   }
