@@ -43,26 +43,20 @@ class Pie extends React.Component<PieProps, PieState> {
       c: 100,
       viewSize: 40,
       className: 'circle',
-      percentage: this.calculatePercentage(12),
+      percentage: this.calculatePercentage(31),
       color: '#ffdb8d',
     }, {
       c: 100,
       viewSize: 40,
       className: 'circle',
-      percentage: this.calculatePercentage(12),
+      percentage: this.calculatePercentage(22),
       color: '#0AE6E5',
     }, {
       c: 100,
       viewSize: 40,
       className: 'circle',
-      percentage: this.calculatePercentage(12),
+      percentage: this.calculatePercentage(15),
       color: '#ffa28d',
-    }, {
-      c: 100,
-      viewSize: 40,
-      className: 'circle',
-      percentage: this.calculatePercentage(12),
-      color: '#8dffa2',
     },
     {
       c: 100,
@@ -109,7 +103,7 @@ class Pie extends React.Component<PieProps, PieState> {
   }
 
   private calculatePercentage(months: number) {
-    const totalMonths = 70;
+    const totalMonths = 90;
     const monthPercentage = (months / totalMonths) * 100;
 
     return monthPercentage;

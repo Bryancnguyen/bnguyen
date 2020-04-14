@@ -23,7 +23,7 @@ class WorkExp extends React.Component<{}, WorkExpState> {
   };
 
   private calculatePercentage(months: number) {
-    const totalMonths = 70;
+    const totalMonths = 90;
     const monthPercentage = (months / totalMonths) * 100;
     return monthPercentage;
   }
@@ -39,7 +39,7 @@ class WorkExp extends React.Component<{}, WorkExpState> {
       "Jest",
     ];
 
-    const ellieMaxExp = this.calculatePercentage(12);
+    const ellieMaeDevExp = this.calculatePercentage(15);
     const ellieMae1Badges = [
       "AngularJS",
       "NodeJS",
@@ -48,6 +48,7 @@ class WorkExp extends React.Component<{}, WorkExpState> {
       "Karma",
     ];
 
+    const ellieMaeDevInternExp = this.calculatePercentage(22);
     const ellieMaeDevInternBadges = [
       "AngularJS",
       "Wordpress",
@@ -55,6 +56,7 @@ class WorkExp extends React.Component<{}, WorkExpState> {
       "Content Management System",
     ];
 
+    const ellieMaeQAExp = this.calculatePercentage(31);
     const ellieMaeQABadges = [
       "Java",
       "Selenium",
@@ -104,9 +106,9 @@ class WorkExp extends React.Component<{}, WorkExpState> {
               <div className="header">Ellie Mae</div>
               <div className="sub-header">Software Engineer I / II</div>
               <ExpBar
-                text={"1 Year"}
+                text={"1 Year 5 months"}
                 color={"#8dffa2"}
-                percentage={ellieMaxExp}
+                percentage={ellieMaeDevExp}
               />
               <p>
                 Worked on developing TPO Connect and TPO Admin, a web portal
@@ -133,9 +135,9 @@ class WorkExp extends React.Component<{}, WorkExpState> {
               <div className="header">Ellie Mae</div>
               <div className="sub-header">Software Engineer Dev Intern</div>
               <ExpBar
-                text={"1 Year"}
+                text={"1 Year 10 months"}
                 color={"#ffa28d"}
-                percentage={ellieMaxExp}
+                percentage={ellieMaeDevInternExp}
               />
               <p>
                 Worked on developing a content management system using Wordpress
@@ -154,11 +156,11 @@ class WorkExp extends React.Component<{}, WorkExpState> {
               </p>
               <Badges badges={ellieMaeDevInternBadges} />
               <div className="header">Ellie Mae</div>
-              <div className="sub-header">QA Engineer</div>
+              <div className="sub-header">QA Engineer Intern</div>
               <ExpBar
-                text={"1 Year"}
-                color={"#0AE6E5"}
-                percentage={ellieMaxExp}
+                text={"2 Year 7 Months"}
+                color={"#ffdb8d"}
+                percentage={ellieMaeQAExp}
               />
               <p>
                 Worked as an automation QA Engineer creating scripts that tested
@@ -169,14 +171,6 @@ class WorkExp extends React.Component<{}, WorkExpState> {
                 Responsible for writing test cases and designing automation
                 framework
               </p>
-              <Badges badges={ellieMaeQABadges} />
-              <div className="header">Ellie Mae</div>
-              <div className="sub-header">QA Engineer Intern</div>
-              <ExpBar
-                text={"1 Year"}
-                color={"#ffdb8d"}
-                percentage={ellieMaxExp}
-              />
               <p>
                 Worked as a manual tester for Encompass, a desktop application
                 that ran only on Windows
@@ -186,7 +180,7 @@ class WorkExp extends React.Component<{}, WorkExpState> {
                 Worked as a manual tester for TPO, a web based application
                 developed with PHP
               </p>
-              <Badges badges={ellieMae1Badges} />
+              <Badges badges={ellieMaeQABadges} />
             </Modal>
           )}
           <Button text={"Show Experience"} onClick={this.onOpenModal}/>
