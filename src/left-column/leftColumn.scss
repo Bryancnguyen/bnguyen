@@ -1,6 +1,9 @@
 #left-column {
-  max-width: 385px;
-  padding: 20px 5px 0px 20px;
+  width: 100%;
+
+  .panel {
+    display: flex;
+  }
 
   .profile-container {
     padding: 60px;

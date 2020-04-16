@@ -126,7 +126,7 @@ class Pie extends React.Component<PieProps, PieState> {
     <div id='pie' className={this.state.pieHover ? 'pieHover': ''} onMouseOver={this.onMouseOver} onMouseOut={this.onMouseOut}>
       <svg viewBox="0 0 40 40" className="circular-chart">
       {this.renderCircleElements()}
-      <text x="20" y="22" className="percentage" onClick={this.onClick}>~7Y</text>
+      <text x="20" y="22" className="percentage" onClick={this.onClick}>100%</text>
     </svg>
     </div>);
   }

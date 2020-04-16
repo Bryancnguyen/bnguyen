@@ -8,12 +8,12 @@ import Bedroom from '../bedroom/Bedroom';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 class SceneCore {
-  private camera: Camera;
+  private camera: PerspectiveCamera;
   private scene: Scene;
   private renderer: WebGLRenderer;
   private components: ComponentType[] = [];
   private controls: OrbitControls | null = null;
-  private canvasWidth: number = 500;
+  private canvasWidth: number = window.innerWidth;
   private canvasHeight: number = 500;
   private currentScene: string = '';
   private sceneProjects = ['matterport-logo', 'animal-crossing'];
@@ -26,7 +26,7 @@ class SceneCore {
     this.renderer = new WebGLRenderer({ antialias: true, alpha: true });
   }
 
-  public init = () => {
+  public init = (project: string) => {
     this.camera.position.set( 0, 0, 2500 );
     this.scene.add(this.camera);
     // set scene color
@@ -36,7 +36,16 @@ class SceneCore {
     if (this.canvas) {
       this.canvas.appendChild(this.renderer.domElement);
     }
-    this.activate();
+    this.activate(project);
+  }
+
+  /**
+   * Resize function for when window size changes
+   */
+  public handleResize = () => {
+    this.camera.aspect = window.innerWidth / this.canvasHeight;
+    this.camera.updateProjectionMatrix();
+    this.renderer.setSize(window.innerWidth, this.canvasHeight)
   }
 
   public updateProject(projectName: string) {
@@ -44,14 +53,15 @@ class SceneCore {
       // if the project doesn't exist, it's probably because its not a threejs Project, so go ahead hide
       this.scene.visible = false;
     } else {
+      this.scene.visible = true;
       // if the project does exist, find the object and update its visibility in our scene
       this.currentScene = projectName;
     }
   }
 
-  private activate() {
+  private activate(project: string) {
     // Boundaries will contain the entire group of objects inside it! Hierarchy!
-    const boundaries = new Boundaries(this.camera);
+    const boundaries = new Boundaries();
     const matterportLogo = new MatterportLogo();
 
     // TODO: move this light creation some where else
@@ -69,7 +79,7 @@ class SceneCore {
     this.addSceneNode(boundaries.container, boundaries.name);
 
     // show the matterport logo as its the first project
-    this.currentScene = matterportLogo.name;
+    this.currentScene = project === matterportLogo.name ? matterportLogo.name : boundaries.name;
 
     // create controls
     this.createControls(this.camera, this.renderer);

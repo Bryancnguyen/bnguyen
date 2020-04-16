@@ -7,6 +7,7 @@ import Location from './location/Location';
 import ContactInfo from './contact-info/ContactInfo';
 import Resume from './resume/resume';
 import Panel from '../panel/Panel';
+import About from '../about/About';
 
 class LeftColumn extends React.Component<{}, LeftColumnState> {
   constructor(props: {}) {
@@ -32,6 +33,9 @@ class LeftColumn extends React.Component<{}, LeftColumnState> {
             <Location location={this.state.location}/>
             <ContactInfo contactInfo={this.state.contactInfo}/>
             <Resume />
+          </div>
+          <div className='aboutme-container'>
+            <About/>
           </div>
         </Panel>
       </div>

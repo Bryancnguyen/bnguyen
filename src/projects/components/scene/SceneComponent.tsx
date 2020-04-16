@@ -9,30 +9,39 @@ class SceneComponent extends React.Component<SceneComponentProps, {}> {
     this.state = {};
   }
 
+  public componentDidMount() {
+    const canvas = document.getElementById('canvas')!;
+    this.sceneCore = new SceneCore(canvas);
+    this.sceneCore.init(this.props.currentProject);
+    this.sceneCore.animate();
+    if (this.sceneCore) {
+      window.addEventListener('resize', this.sceneCore.handleResize, false);
+    }
+  }
+
+  public componentWillUnmount() {
+    if (this.sceneCore) {
+      window.removeEventListener('resize', this.sceneCore.handleResize, false)
+    }
+  }
+
   render() {
     return (<div id='canvas'/>)
   }
 
   public componentDidUpdate(nextProps: SceneComponentProps) {
-    if (nextProps.currentProject === this.props.currentProject) return;
-    this.updateSlideDirection();
+    if (nextProps.currentProject !== this.props.currentProject) {
+      this.updateProject(this.props.currentProject);
+    }
   }
 
-  private updateSlideDirection() {
+  private updateProject(project: string) {
     if (!this.sceneCore) return;
-    this.sceneCore.updateProject(this.props.currentProject);
-  }
-
-  public componentDidMount() {
-    const canvas = document.getElementById('canvas')!;
-    this.sceneCore = new SceneCore(canvas);
-    this.sceneCore.init();
-    this.sceneCore.animate();
+    this.sceneCore.updateProject(project);
   }
 }
 
 interface SceneComponentProps {
-  slideDirection: string;
   currentProject: string;
 }
 

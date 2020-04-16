@@ -1,16 +1,21 @@
 #projects {
-  margin: 20px;
+  width: 100%;
 
   .projects-container {
-    padding: 0 20px 20px;
+    height: 500px;
   }
 
   .current-project {
+    position: absolute;
+    top: 450px;
+    left: 50%;
     display: flex;
     justify-content: center;
     padding-top: 10px;
+    transform: translate(-50%, -50%);
 
     .project-name {
+      
       line-height: 30px;
       margin: 0px 20px;
       cursor: pointer;
