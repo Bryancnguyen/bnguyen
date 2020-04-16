@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/bryan-web-resume/static/css/main.0d45c96f.chunk.css",
-    "main.js": "/bryan-web-resume/static/js/main.8db0a0f5.chunk.js",
-    "main.js.map": "/bryan-web-resume/static/js/main.8db0a0f5.chunk.js.map",
-    "runtime-main.js": "/bryan-web-resume/static/js/runtime-main.bc53d200.js",
-    "runtime-main.js.map": "/bryan-web-resume/static/js/runtime-main.bc53d200.js.map",
-    "static/js/2.9d085c32.chunk.js": "/bryan-web-resume/static/js/2.9d085c32.chunk.js",
-    "static/js/2.9d085c32.chunk.js.map": "/bryan-web-resume/static/js/2.9d085c32.chunk.js.map",
-    "index.html": "/bryan-web-resume/index.html",
-    "precache-manifest.49aa1cb0244f1037963e6f6fc75144af.js": "/bryan-web-resume/precache-manifest.49aa1cb0244f1037963e6f6fc75144af.js",
-    "service-worker.js": "/bryan-web-resume/service-worker.js",
-    "static/css/main.0d45c96f.chunk.css.map": "/bryan-web-resume/static/css/main.0d45c96f.chunk.css.map",
-    "static/js/2.9d085c32.chunk.js.LICENSE.txt": "/bryan-web-resume/static/js/2.9d085c32.chunk.js.LICENSE.txt",
-    "static/media/style.scss": "/bryan-web-resume/static/media/bryan-web.ce2c4e9d.woff"
+    "main.css": "/bnguyen/static/css/main.3e34e896.chunk.css",
+    "main.js": "/bnguyen/static/js/main.f71d734b.chunk.js",
+    "main.js.map": "/bnguyen/static/js/main.f71d734b.chunk.js.map",
+    "runtime-main.js": "/bnguyen/static/js/runtime-main.7755fcf9.js",
+    "runtime-main.js.map": "/bnguyen/static/js/runtime-main.7755fcf9.js.map",
+    "static/js/2.4462190a.chunk.js": "/bnguyen/static/js/2.4462190a.chunk.js",
+    "static/js/2.4462190a.chunk.js.map": "/bnguyen/static/js/2.4462190a.chunk.js.map",
+    "index.html": "/bnguyen/index.html",
+    "precache-manifest.3d9c069f7eb7a3ee8ffbbdd4fdbdc568.js": "/bnguyen/precache-manifest.3d9c069f7eb7a3ee8ffbbdd4fdbdc568.js",
+    "service-worker.js": "/bnguyen/service-worker.js",
+    "static/css/main.3e34e896.chunk.css.map": "/bnguyen/static/css/main.3e34e896.chunk.css.map",
+    "static/js/2.4462190a.chunk.js.LICENSE.txt": "/bnguyen/static/js/2.4462190a.chunk.js.LICENSE.txt",
+    "static/media/style.scss": "/bnguyen/static/media/bryan-web.ce2c4e9d.woff"
   },
   "entrypoints": [
-    "static/js/runtime-main.bc53d200.js",
-    "static/js/2.9d085c32.chunk.js",
-    "static/css/main.0d45c96f.chunk.css",
-    "static/js/main.8db0a0f5.chunk.js"
+    "static/js/runtime-main.7755fcf9.js",
+    "static/js/2.4462190a.chunk.js",
+    "static/css/main.3e34e896.chunk.css",
+    "static/js/main.f71d734b.chunk.js"
   ]
 }
