@@ -1,5 +1,5 @@
 import React from 'react';
-import './leftColumn.scss';
+import './profile.scss';
 import ProfilePic from './profile-pic/ProfilePic';
 import Name from './name/Name';
 import Description from './description/Description';
@@ -7,9 +7,9 @@ import Location from './location/Location';
 import ContactInfo from './contact-info/ContactInfo';
 import Resume from './resume/resume';
 import Panel from '../panel/Panel';
-import About from '../about/About';
+import About from './about/About';
 
-class LeftColumn extends React.Component<{}, LeftColumnState> {
+class Profile extends React.Component<{}, ProfileState> {
   constructor(props: {}) {
     super(props);
     this.state = {
@@ -24,7 +24,7 @@ class LeftColumn extends React.Component<{}, LeftColumnState> {
 
   render() {
     return (
-      <div id='left-column'>
+      <div id='profile'>
         <Panel>
           <div className='profile-container'>
             <ProfilePic profileAlt={this.state.profileAlt} profileSrc={this.state.profileSrc}/>
@@ -46,7 +46,7 @@ class LeftColumn extends React.Component<{}, LeftColumnState> {
   }
 }
 
-interface LeftColumnState {
+interface ProfileState {
   profileAlt: string;
   profileSrc: string;
   name: string;
@@ -55,4 +55,4 @@ interface LeftColumnState {
   contactInfo: string;
 }
 
-export default LeftColumn;
+export default Profile;

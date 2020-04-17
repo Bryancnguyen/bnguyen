@@ -16,7 +16,7 @@ class SceneCore {
   private canvasWidth: number = window.innerWidth;
   private canvasHeight: number = 500;
   private currentScene: string = '';
-  private sceneProjects = ['matterport-logo', 'animal-crossing'];
+  private sceneProjects: string[] = [];
   private sceneObjMap: {[nodeName: string]: Object3D} = {};
 
   constructor(private canvas: HTMLElement) {
@@ -60,11 +60,17 @@ class SceneCore {
   }
 
   private activate(project: string) {
+    this.addSceneObjects(project);
+ 
+    // create controls
+    this.createControls(this.camera, this.renderer);
+  }
+
+  private addSceneObjects(project: string) {
     // Boundaries will contain the entire group of objects inside it! Hierarchy!
     const boundaries = new Boundaries();
     const matterportLogo = new MatterportLogo();
 
-    // TODO: move this light creation some where else
     const matterportLogoLight = new DirectionalLight(0xFFFFFF, 2.5);
     matterportLogoLight.position.copy(this.camera.position);
     matterportLogoLight.castShadow = true;
@@ -74,36 +80,42 @@ class SceneCore {
     animalCrossLight.position.copy(this.camera.position);
     animalCrossLight.castShadow = true;
     boundaries.container.add(animalCrossLight);
+
+    // the names of the projects should match with the component name
+    this.sceneProjects.push(matterportLogo.name, boundaries.name);
  
     this.addSceneNode(matterportLogo.container, matterportLogo.name);
     this.addSceneNode(boundaries.container, boundaries.name);
 
     // show the matterport logo as its the first project
     this.currentScene = project === matterportLogo.name ? matterportLogo.name : boundaries.name;
+    // lazy load third party content
+    this.loadThirdPartyObjects(boundaries);
 
-    // create controls
-    this.createControls(this.camera, this.renderer);
-
-    // lazy load content
-    this.loadObjects(boundaries);
-
+    // must add components to get it into the update loop
     this.components = [matterportLogo];
   }
 
+  /**
+   * Controls for moving the scene around
+   * @param camera 
+   * @param renderer 
+   */
   private createControls(camera: Camera, renderer: WebGLRenderer) {
     this.controls = new OrbitControls( camera, renderer.domElement );
     this.controls.enableDamping = true;
     this.controls.dampingFactor = 0.05;
-
     this.controls.screenSpacePanning = false;
-
     this.controls.minDistance = 1000;
     this.controls.maxDistance = 5000;
-
     this.controls.maxPolarAngle = Math.PI / 2;
   }
 
-  private loadObjects(boundaries: Boundaries) {
+  /**
+   * These are objects that come from SketchFab that we have in our public dir
+   * @param boundaries 
+   */
+  private loadThirdPartyObjects(boundaries: Boundaries) {
     const desk = new Desk(boundaries.addToFloor);
     desk.createDesk();
 
@@ -129,6 +141,9 @@ class SceneCore {
     return this.camera;
   }
 
+  /**
+   * Function to render the current scene with camera
+   */
   private renderScene() {
     this.renderer.render(this.scene, this.camera);
   }
@@ -144,11 +159,13 @@ class SceneCore {
     if (this.controls) {
       this.controls.update();
     }
+
     // call each components individual update loop
     this.components.forEach((c: ComponentType) => {
       c.update();
     });
 
+    // show and hide the current and not current projects
     for (let [key, value] of Object.entries(this.sceneObjMap)) {
       if (key === this.currentScene) {
         value.visible = true;

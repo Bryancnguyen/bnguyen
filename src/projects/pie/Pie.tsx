@@ -4,9 +4,6 @@ import { pieData } from './pieData';
 import { calculatePercentage } from './calculatePercentage';
 
 /**
- * Our little pie will be made up of X numbers of <circles></circles>
- * lets see how that goes..
- * 
  * To use Pie, pass in a js object in the structure of PieData
  */
 class Pie extends React.Component<PieProps, PieState> {

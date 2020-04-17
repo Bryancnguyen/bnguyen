@@ -15,6 +15,7 @@ class SceneComponent extends React.Component<SceneComponentProps, {}> {
     this.sceneCore.init(this.props.currentProject);
     this.sceneCore.animate();
     if (this.sceneCore) {
+      // resize the canvas when the window size has changed
       window.addEventListener('resize', this.sceneCore.handleResize, false);
     }
   }

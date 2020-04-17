@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.scss';
 import './App.scss';
-import LeftColumn from './left-column/LeftColumn';
+import Profile from './profile/Profile';
 import Projects from './projects/Projects';
 import WorkExp from './work-exp/WorkExp';
 
@@ -12,7 +12,7 @@ function App() {
         <Projects/>
       </div>
       <div className='row'>
-        <LeftColumn/>
+        <Profile/>
       </div>
       <div className='row'>
         <WorkExp />

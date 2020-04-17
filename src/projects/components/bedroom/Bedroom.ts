@@ -2,9 +2,7 @@ import { Object3D } from 'three';
 import { GLTFLoader, GLTF } from 'three/examples/jsm/loaders/GLTFLoader';
 
 export class Bedroom {
-  constructor(private addSceneNode: (obj: Object3D) => void) {
-
-  }
+  constructor(private addSceneNode: (obj: Object3D) => void) {}
 
   public createBedroom() {
     const loader = new GLTFLoader();

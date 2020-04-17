@@ -59,9 +59,13 @@ export class Boundaries implements ComponentType {
     return mesh;
   }
 
-  public addToFloor = (obj: Object3D) => {
+  public addToFloor = (obj: Object3D | Object3D[]) => {
     if (this.floor) {
-      this.floor.add(obj);
+      if (Array.isArray(obj)) {
+        this.floor.add(...obj);
+      } else {
+        this.floor.add(obj);
+      }
     }
   }
 
