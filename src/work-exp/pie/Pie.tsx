@@ -8,6 +8,7 @@ import './pie.scss';
 class Pie extends React.Component<PieProps, PieState> {
   private totalCircumference = 0;
   private clickTimeout: number = 0;
+  private timer: number = 0;
 
   constructor(props: PieProps) {
     super(props);
@@ -15,7 +16,30 @@ class Pie extends React.Component<PieProps, PieState> {
       circleElements: [],
       pieHover: false,
       pieClicked: false,
+      completed: false,
+      percentage: 0,
     };
+  }
+
+  public componentDidMount() {
+    this.updatePercentage();
+  }
+
+  private updatePercentage = () =>{
+    const { completed } = this.state;
+    if (!completed) {
+      this.timer = window.setInterval(this.updatePercentageNumber, 15);
+    } else {
+      window.clearInterval(this.timer);
+    }
+  }
+
+  private updatePercentageNumber = () => {
+    if (this.state.percentage !== 100) {
+      this.setState((prevState) => ({percentage: prevState.percentage + 1}));
+    } else {
+      this.setState({completed: true});
+    }
   }
 
   private onClick = () => {
@@ -126,7 +150,7 @@ class Pie extends React.Component<PieProps, PieState> {
     <div id='pie' className={this.state.pieHover ? 'pieHover': ''} onMouseOver={this.onMouseOver} onMouseOut={this.onMouseOut}>
       <svg viewBox="0 0 40 40" className="circular-chart">
       {this.renderCircleElements()}
-      <text x="20" y="22" className="percentage" onClick={this.onClick}>100%</text>
+      <text x="20" y="22" className="percentage" onClick={this.onClick}>{`${this.state.percentage}%`}</text>
     </svg>
     </div>);
   }
@@ -136,6 +160,8 @@ interface PieState {
   circleElements: JSX.Element[];
   pieHover: boolean;
   pieClicked: boolean;
+  completed: boolean;
+  percentage: number;
 }
 
 interface PieProps {
