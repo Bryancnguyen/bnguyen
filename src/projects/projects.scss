@@ -1,8 +1,11 @@
+@import '../mixins/elevation.scss';
+
 #projects {
   width: 100%;
 
   .projects-container {
     height: 500px;
+    @include BoxShadow(16);
   }
 
   .current-project {
@@ -18,11 +21,12 @@
       
       line-height: 30px;
       margin: 0px 20px;
-      cursor: pointer;
+      // TODO: fix highlighting of the pie
+      // cursor: pointer;
 
-      &:hover {
-        color: rgba(255, 255, 255, 0.12);
-      }
+      // &:hover {
+      //   color: rgba(255, 255, 255, 0.12);
+      // }
     }
 
     .click-next, .click-prev {
@@ -41,6 +45,22 @@
     .click-next:hover, .click-prev:hover {
       opacity: 0.4;
       border: 2px solid rgba(255, 255, 255, 0.04);
+    }
+  }
+
+  #pie {
+    height: 256px;
+    margin: 15px auto;
+    padding: 50px;
+  }
+
+  .bry-button {
+    margin: 0px auto;
+    width: 190px;
+    height: 60px;
+
+    .bry-button-elem {
+      padding: 10px 40px;
     }
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import './projects.scss';
 import SceneComponent from './components/scene/SceneComponent';
-import Pie from '../work-exp/pie/Pie';
+import Pie from './pie/Pie';
 export enum ProjectTypes {
   TwoD,
   ThreeD
@@ -16,7 +16,7 @@ class Projects extends React.Component<{}, ProjectsState> {
   }, {
     name: 'pie',
     type: ProjectTypes.TwoD,
-    project: <Pie />
+    project: <Pie circumference={100} total={81} viewSize={40}/>
   }
   ];
   private projectsMap: { [key: number]: string } = {
