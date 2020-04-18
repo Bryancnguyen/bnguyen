@@ -1,4 +1,4 @@
-import { Object3D, MeshPhongMaterial, DoubleSide, BoxGeometry, Mesh, Geometry, Vector3 } from 'three';
+import { Object3D, MeshPhongMaterial, DoubleSide, BoxGeometry, Mesh, Geometry, Vector3, Material } from 'three';
 import { degreesToRadians } from '../utils/degreesToRadians';
 import ComponentType from '../ComponentType';
 
@@ -6,7 +6,18 @@ export class MatterportLogo implements ComponentType {
   public readonly name = 'matterport-logo';
   private logo: Object3D;
   private tempGeometry: Mesh | null;
-  private material: MeshPhongMaterial;
+  private material = new MeshPhongMaterial({
+    color: 0xFF3158,
+    transparent: true,
+    side: DoubleSide,
+    reflectivity: 1,
+    opacity: 0.8,
+    specular: 0xFC7A8C,
+  });
+  
+  private geometries: Geometry[] = [];
+  private materials: Material[] = [];
+
   private rotations = [
     { x: 25, y: -43.05, z: 0 },
   ];
@@ -37,14 +48,7 @@ export class MatterportLogo implements ComponentType {
   ];
 
   constructor() {
-    this.material = new MeshPhongMaterial({
-      color: 0xFF3158,
-      transparent: true,
-      side: DoubleSide,
-      reflectivity: 1,
-      opacity: 0.8,
-      specular: 0xFC7A8C,
-    });
+    this.materials.push(this.material);
     this.logo = this.createMeshLogo();
     this.tempGeometry = null;
     this.logo.scale.copy(new Vector3(50, 50, 50));
@@ -61,14 +65,20 @@ export class MatterportLogo implements ComponentType {
     const root = new Object3D();
     for (let i = 0; i < 1; i++) {
       const geometry = new BoxGeometry(5, 5, 5);
+      this.geometries.push(geometry);
       for (let j = 0; j < this.LShapeGeometry.length; j++) {
-        this.tempGeometry = new Mesh(new BoxGeometry(5, 5, 5));
+        const geometry2 = new BoxGeometry(5, 5, 5);
+        this.tempGeometry = new Mesh(geometry2);
+
+        this.geometries.push(geometry2);
+
         this.tempGeometry.position.x = 5 * this.LShapeGeometry[j].x;
         this.tempGeometry.position.y = 5 * this.LShapeGeometry[j].y;
         this.tempGeometry.position.z = i === 1 ? 5 * this.LShapeGeometry[j].z : -1 * (5 * this.LShapeGeometry[j].z);
         this.tempGeometry.updateMatrix();
         geometry.merge(this.tempGeometry.geometry as Geometry, this.tempGeometry.matrix);
       }
+
   
       const mesh = new Mesh(geometry, this.material);
   
@@ -87,6 +97,15 @@ export class MatterportLogo implements ComponentType {
 
   public update() {
     this.logo.rotation.y -= 0.01;
+  }
+
+  public dispose() {
+    this.geometries.forEach((geometry) => {
+      geometry.dispose();
+    })
+    this.materials.forEach((material) => {
+      material.dispose();
+    })
   }
 }
 

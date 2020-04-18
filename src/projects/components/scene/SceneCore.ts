@@ -6,6 +6,7 @@ import ComponentType from '../ComponentType';
 import Desk from '../desk/Desk';
 import Bedroom from '../bedroom/Bedroom';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import Moist from '../moist/Moist';
 
 class SceneCore {
   private camera: PerspectiveCamera;
@@ -70,6 +71,7 @@ class SceneCore {
     // Boundaries will contain the entire group of objects inside it! Hierarchy!
     const boundaries = new Boundaries();
     const matterportLogo = new MatterportLogo();
+    const moist = new Moist();
 
     const matterportLogoLight = new DirectionalLight(0xFFFFFF, 2.5);
     matterportLogoLight.position.copy(this.camera.position);
@@ -80,20 +82,21 @@ class SceneCore {
     animalCrossLight.position.copy(this.camera.position);
     animalCrossLight.castShadow = true;
     boundaries.container.add(animalCrossLight);
-
+    
     // the names of the projects should match with the component name
-    this.sceneProjects.push(matterportLogo.name, boundaries.name);
+    this.sceneProjects.push(moist.name, matterportLogo.name, boundaries.name);
  
+    this.addSceneNode(moist.container, moist.name);
     this.addSceneNode(matterportLogo.container, matterportLogo.name);
     this.addSceneNode(boundaries.container, boundaries.name);
 
     // show the matterport logo as its the first project
-    this.currentScene = project === matterportLogo.name ? matterportLogo.name : boundaries.name;
+    this.currentScene = !project ? moist.name : project;
     // lazy load third party content
     this.loadThirdPartyObjects(boundaries);
 
     // must add components to get it into the update loop
-    this.components = [matterportLogo];
+    this.components = [moist, matterportLogo, boundaries];
   }
 
   /**
@@ -173,6 +176,13 @@ class SceneCore {
         value.visible = false;
       }
     }
+  }
+
+  // free up memory
+  public dispose = () => {
+    this.components.forEach((c) => {
+      c.dispose()
+    });
   }
 }
 

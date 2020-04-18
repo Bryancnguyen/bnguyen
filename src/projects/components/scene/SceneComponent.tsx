@@ -12,6 +12,7 @@ class SceneComponent extends React.Component<SceneComponentProps, {}> {
   public componentDidMount() {
     const canvas = document.getElementById('canvas')!;
     this.sceneCore = new SceneCore(canvas);
+    console.log(this.props.currentProject);
     this.sceneCore.init(this.props.currentProject);
     this.sceneCore.animate();
     if (this.sceneCore) {
@@ -22,7 +23,8 @@ class SceneComponent extends React.Component<SceneComponentProps, {}> {
 
   public componentWillUnmount() {
     if (this.sceneCore) {
-      window.removeEventListener('resize', this.sceneCore.handleResize, false)
+      window.removeEventListener('resize', this.sceneCore.handleResize, false);
+      this.sceneCore.dispose();
     }
   }
 

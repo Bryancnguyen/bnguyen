@@ -1,4 +1,5 @@
-import { Object3D, Mesh, Vector3, MeshLambertMaterial, TextureLoader, sRGBEncoding, RepeatWrapping, PlaneBufferGeometry, DoubleSide, MeshBasicMaterial, BoxBufferGeometry } from 'three';
+import { Object3D, Mesh, Vector3, MeshLambertMaterial, TextureLoader, sRGBEncoding, RepeatWrapping,
+  PlaneBufferGeometry, DoubleSide, MeshBasicMaterial, BoxBufferGeometry, Material, BufferGeometry } from 'three';
 import ComponentType from '../ComponentType';
 
 export class Boundaries implements ComponentType {
@@ -8,6 +9,9 @@ export class Boundaries implements ComponentType {
   private materialTransparent: MeshBasicMaterial;
   private floorMaterial: MeshBasicMaterial;
   private floor: Object3D | null = null;
+  private geometries: BufferGeometry[] = [];
+  private materials: Material[] = [];
+
   constructor() {
     const loader = new TextureLoader();
     const floorTexture = loader.load(`${process.env.PUBLIC_URL}/assets/textures/a_flooring2.png`);
@@ -29,6 +33,8 @@ export class Boundaries implements ComponentType {
     });
     this.materialTransparent =  new MeshBasicMaterial( { transparent: true, opacity: 0, side: DoubleSide} );
 
+    this.materials.push(this.floorMaterial, this.wallMaterial, this.materialTransparent);
+
     this.boundaries = this.createWalls();
   }
 
@@ -46,6 +52,7 @@ export class Boundaries implements ComponentType {
 
   private createFloor() {
     const geometry = new PlaneBufferGeometry(3500, 2000);
+    this.geometries.push(geometry);
     const mesh = new Mesh(geometry, this.floorMaterial);
     mesh.receiveShadow = true;
     return mesh;
@@ -53,6 +60,7 @@ export class Boundaries implements ComponentType {
 
   private createWallMeshes() {
     const geometry = new BoxBufferGeometry(3500, 2000, 1500);
+    this.geometries.push(geometry);
     const mesh = new Mesh(geometry, [this.wallMaterial, this.wallMaterial,
       this.wallMaterial, this.materialTransparent, this.materialTransparent, this.materialTransparent]);
     mesh.receiveShadow = true;
@@ -83,6 +91,15 @@ export class Boundaries implements ComponentType {
   }
 
   public update() {}
+
+  public dispose() {
+    this.geometries.forEach((geometry) => {
+      geometry.dispose();
+    })
+    this.materials.forEach((material) => {
+      material.dispose();
+    })
+  }
 }
 
 export default Boundaries;

@@ -8,6 +8,9 @@ export enum ProjectTypes {
 }
 class Projects extends React.Component<{}, ProjectsState> {
   private projects = [{
+    name: 'moist',
+    type: ProjectTypes.ThreeD,
+  },{
     name: 'matterport-logo',
     type: ProjectTypes.ThreeD,
   }, {
@@ -20,9 +23,10 @@ class Projects extends React.Component<{}, ProjectsState> {
   }
   ];
   private projectsMap: { [key: number]: string } = {
-    0: 'Matterport Logo',
-    1: 'Animal Crossing in Three',
-    2: 'Pie'
+    0: 'Moist',
+    1: 'Matterport Logo',
+    2: 'Animal Crossing in Three',
+    3: 'Pie'
   }
 
   constructor(props: {}) {
