@@ -17,7 +17,7 @@ class ContactInfo extends React.Component<ContactInfoProps, {}> {
         <a className='github' href='https://github.com/Bryancnguyen' target='_blank' rel='noopener noreferrer'>Github</a>
       </div>
       <div>
-        <a className='email' href='mailto:bryancanhnguyen@gmail.com'>{this.props.contactInfo}</a>
+        <a className='email' href='mailto:bryan.canh@gmail.com'>{this.props.contactInfo}</a>
       </div>
     </div>);
   }

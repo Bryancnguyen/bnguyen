@@ -10,7 +10,7 @@ class Resume extends React.Component{
 
   private onResumeBtnClick() {
     try {
-      window.open('https://drive.google.com/file/d/1Pvm-rbLTnWdAgsI3Snk4mBINUj6-QOfS/view?usp=sharing', '_blank');
+      window.open('https://drive.google.com/file/d/1ZMauJyforXSWWJSHiUvXAQjt7THIvq8R/view?usp=sharing', '_blank');
     } catch (err) {
       console.error('Could not open resume link');
     }
