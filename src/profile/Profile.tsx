@@ -18,7 +18,7 @@ class Profile extends React.Component<{}, ProfileState> {
       name: 'Bryan Nguyen',
       description: 'Software Engineer',
       location: 'San Jose, CA',
-      contactInfo: 'bryancanhnguyen@gmail.com'
+      contactInfo: 'bryan.canh@gmail.com'
     };
   }
 
