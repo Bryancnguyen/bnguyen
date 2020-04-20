@@ -12,7 +12,6 @@ class SceneComponent extends React.Component<SceneComponentProps, {}> {
   public componentDidMount() {
     const canvas = document.getElementById('canvas')!;
     this.sceneCore = new SceneCore(canvas);
-    console.log(this.props.currentProject);
     this.sceneCore.init(this.props.currentProject);
     this.sceneCore.animate();
     if (this.sceneCore) {
@@ -29,7 +28,7 @@ class SceneComponent extends React.Component<SceneComponentProps, {}> {
   }
 
   render() {
-    return (<div id='canvas'/>)
+    return (<div id='canvas' />)
   }
 
   public componentDidUpdate(nextProps: SceneComponentProps) {

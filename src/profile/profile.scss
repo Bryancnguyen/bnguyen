@@ -1,3 +1,5 @@
+@import "../font-icons/style.scss";
+
 #profile {
   width: 100%;
 
@@ -7,5 +9,70 @@
 
   .profile-container {
     padding: 60px;
+  }
+
+  #profile-pic {
+    img {
+      height: 260px;
+      width: 260px;
+      border-radius: 50%;
+    }
+  }
+
+  #resume {
+    .bry-button {
+      margin-top: 24px;
+    }
+  }
+
+  #name {
+    font-size: 26px;
+    margin: 20px 0px;
+  }
+
+  #location {
+    .icon-location {
+      color: #fe68a6;
+    }
+    .location {
+      margin-left: 5px;
+    }
+  }
+
+  #contact-info {
+    margin: 5px 0px;
+
+    > div {
+      margin-top: 8px;
+    }
+
+    .email,
+    .linkedin,
+    .github {
+      text-decoration: none;
+      color: white;
+    }
+
+    .email:hover,
+    .linkedin:hover,
+    .github:hover {
+      color: rgba(255, 255, 255, 0.12);
+    }
+  }
+
+  #about {
+    margin: 65px 110px;
+
+    h2 {
+      margin: 0;
+    }
+
+    p {
+      line-height: 26px;
+    }
+
+    .name {
+      font-size: 22px;
+    }
   }
 }
