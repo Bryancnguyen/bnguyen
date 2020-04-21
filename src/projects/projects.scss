@@ -1,4 +1,4 @@
-@import '../mixins/elevation.scss';
+@import "../mixins/elevation.scss";
 
 #projects {
   width: 100%;
@@ -18,18 +18,18 @@
     transform: translate(-50%, -50%);
 
     .project-name {
-      
       line-height: 30px;
       margin: 0px 20px;
       // TODO: project description
-      // cursor: pointer;
+      cursor: pointer;
 
-      // &:hover {
-      //   color: rgba(255, 255, 255, 0.12);
-      // }
+      &:hover {
+        color: rgba(255, 255, 255, 0.12);
+      }
     }
 
-    .click-next, .click-prev {
+    .click-next,
+    .click-prev {
       pointer-events: all;
       cursor: pointer;
       border: 2px solid rgba(255, 255, 255, 0.12);
@@ -37,12 +37,14 @@
       line-height: 20px;
       border-radius: 50%;
 
-      .icon-next, .icon-prev {
+      .icon-next,
+      .icon-prev {
         line-height: 20px;
       }
     }
 
-    .click-next:hover, .click-prev:hover {
+    .click-next:hover,
+    .click-prev:hover {
       opacity: 0.4;
       border: 2px solid rgba(255, 255, 255, 0.04);
     }
