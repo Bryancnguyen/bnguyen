@@ -21,7 +21,7 @@ class Modal extends React.Component<ModalProps, ModalState> {
     if (this.contentRef) {
       const ref = this.contentRef as RefObject<HTMLDivElement>;
       const currentHeight = ref.current?.clientHeight;
-      this.setState({iconDownTop: currentHeight ? currentHeight - 40 : 0});
+      this.setState({ iconDownTop: currentHeight ? currentHeight - 40 : 0 });
     }
   }
 
@@ -30,10 +30,10 @@ class Modal extends React.Component<ModalProps, ModalState> {
       const ref = this.contentRef as RefObject<HTMLDivElement>;
       const scrollTop = ref.current?.scrollTop;
       if (scrollTop && scrollTop > 0) {
-        this.setState({scrolled: true});
+        this.setState({ scrolled: true });
       }
       if (scrollTop === 0 && this.state.scrolled) {
-        this.setState({scrolled: false});
+        this.setState({ scrolled: false });
       }
     }
   }
@@ -43,23 +43,24 @@ class Modal extends React.Component<ModalProps, ModalState> {
       top: `${this.state.iconDownTop}px`,
     }
     return (
-    <div className='modal'>
-      <div className='modal-overlay' onClick={this.onClose}/>
-      <div className='modal-container' ref={this.contentRef} onScroll={this.onScroll}>
-        <span className='bryan icon-close' onClick={this.onClose}/>
-        <div className='content'>
-          {this.props.children}
-          { !this.state.scrolled &&
-            <span className='bryan icon-down' style={iconDownStyle}/>
-          }
+      <div className='modal'>
+        <div className='modal-overlay' onClick={this.onClose} />
+        <div className='modal-container' ref={this.contentRef} onScroll={this.onScroll}>
+          <span className='bryan icon-close' onClick={this.onClose} />
+          <div className='content'>
+            {this.props.children}
+            {!this.state.scrolled && this.props.showScroll &&
+              <span className='bryan icon-down' style={iconDownStyle} />
+            }
+          </div>
         </div>
-        </div>
-    </div>);
+      </div>);
   }
 }
 
 interface ModalProps {
   onClose: () => void;
+  showScroll: boolean;
 }
 
 interface ModalState {

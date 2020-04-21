@@ -59,7 +59,7 @@ export const Projects = () => {
             <span className='bryan icon-prev' />
           </div>
         }
-        <span className='project-name'>{projectsMap[projectCount]}</span>
+        <span className='project-name' onClick={() => setShowModal(true)}>{projectsMap[projectCount]}</span>
         {
           projectCount !== projects.length - 1 &&
           <div className='click-next' onClick={() => setProjectCount((c => c + 1))}>
@@ -68,7 +68,13 @@ export const Projects = () => {
         }
       </div>
     </div>
-    {showModal && <Modal onClose={() => setShowModal(false)} />}
+    {showModal &&
+      <Modal
+        showScroll={false}
+        onClose={() => setShowModal(false)}>
+        <div className='header'>Does this make you thirsty?</div>
+        <div className='sub-header'>Using ThreeJS and 2 spheres for hydrogen and 1 for oxygen, I've made you incredibly thirsty</div>
+      </Modal>}
   </div>)
 };
 
