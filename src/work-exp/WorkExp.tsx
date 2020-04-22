@@ -144,7 +144,7 @@ class WorkExp extends React.Component<{}, WorkExpState> {
               </p>
           <Badges badges={ellieMaeDevInternBadges} />
           <div className="header">Ellie Mae</div>
-          <div className="sub-header">QA Engineer Intern</div>
+          <div className="sub-header">QA Engineer</div>
           <ExpBar
             text={"2 Year 7 Months"}
             color={"#ffdb8d"}
