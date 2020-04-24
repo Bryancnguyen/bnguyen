@@ -29,6 +29,20 @@ export default class Binary {
     );
   }
 
+  private createGeo(font: Font, text: string) {
+    return new TextBufferGeometry(text, {
+      font: font,
+      size: 500,
+      height: 300,
+      curveSegments: 12,
+      bevelEnabled: true,
+      bevelThickness: 10,
+      bevelSize: 8,
+      bevelOffset: 0,
+      bevelSegments: 5,
+    });
+  }
+
   private onLoad(font: Font) {
     let geometries = [];
 
@@ -37,20 +51,12 @@ export default class Binary {
       new MeshNormalMaterial(), // side
     ];
 
+    const zeroGeo = this.createGeo(font, "0");
+    const oneGeo = this.createGeo(font, "1");
+    geometries.push(zeroGeo, oneGeo);
+
     for (let i = 0; i < 100; i++) {
-      let geometry = new TextBufferGeometry(`${i % 2 === 0 ? "0" : "1"}`, {
-        font: font,
-        size: 500,
-        height: 300,
-        curveSegments: 12,
-        bevelEnabled: true,
-        bevelThickness: 10,
-        bevelSize: 8,
-        bevelOffset: 0,
-        bevelSegments: 5,
-      });
-      geometries.push(geometry);
-      const mesh = new Mesh(geometry, materials);
+      const mesh = new Mesh(i % 2 === 0 ? zeroGeo : oneGeo, materials);
       mesh.position.copy(calcRandomPosition());
       this.addSceneNode(mesh);
     }
