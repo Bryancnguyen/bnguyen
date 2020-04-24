@@ -33,7 +33,7 @@ export default class Binary {
 
     let materials = [
       new MeshNormalMaterial({ flatShading: true }), // front
-      new MeshLambertMaterial({ color: 0x00ff00 }), // side
+      new MeshNormalMaterial(), // side
     ];
 
     for (let i = 0; i < 100; i++) {
