@@ -1,11 +1,10 @@
 import {
   Object3D,
   FontLoader,
-  TextGeometry,
+  TextBufferGeometry,
   Mesh,
   Font,
   MeshNormalMaterial,
-  Geometry,
   Material,
 } from "three";
 import { calcRandomPosition } from "../utils/calcRandomPosition";
@@ -13,7 +12,10 @@ import { calcRandomPosition } from "../utils/calcRandomPosition";
 export default class Binary {
   constructor(
     private addSceneNode: (obj: Object3D) => void,
-    private addGeoAndMesh: (geo: Geometry[], materials: Material[]) => void
+    private addGeoAndMesh: (
+      geo: TextBufferGeometry[],
+      materials: Material[]
+    ) => void
   ) {
     this.createText();
   }
@@ -36,7 +38,7 @@ export default class Binary {
     ];
 
     for (let i = 0; i < 100; i++) {
-      let geometry = new TextGeometry(`${i % 2 === 0 ? "0" : "1"}`, {
+      let geometry = new TextBufferGeometry(`${i % 2 === 0 ? "0" : "1"}`, {
         font: font,
         size: 500,
         height: 300,
