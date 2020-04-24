@@ -9,6 +9,9 @@ export enum ProjectTypes {
 }
 
 const projects = [{
+  name: 'binary',
+  type: ProjectTypes.ThreeD,
+}, {
   name: 'moist',
   type: ProjectTypes.ThreeD,
 }, {
@@ -25,10 +28,11 @@ const projects = [{
 ];
 
 const projectsMap: { [key: number]: string } = {
-  0: 'Moist',
-  1: 'Matterport Logo',
-  2: 'Animal Crossing in Three',
-  3: 'Pie'
+  0: 'Binary',
+  1: 'Moist',
+  2: 'Matterport Logo',
+  3: 'Animal Crossing in Three',
+  4: 'Pie'
 }
 
 const getUIProject = (projectCount: number) => {
@@ -68,7 +72,7 @@ export const Projects = () => {
         }
       </div>
     </div>
-    {showModal &&
+    {showModal && projectCount === 1 &&
       <Modal
         showScroll={false}
         onClose={() => setShowModal(false)}>
