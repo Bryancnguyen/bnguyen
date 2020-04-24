@@ -1,10 +1,10 @@
-import { Object3D, Material, BufferGeometry } from "three";
+import { Object3D, Material, Geometry } from "three";
 import ComponentType from "../ComponentType";
 
 export class BinaryModule implements ComponentType {
   public readonly name = "binary";
   private binary: Object3D;
-  private geometries: BufferGeometry[] = [];
+  private geometries: Geometry[] = [];
   private materials: Material[] = [];
 
   constructor() {
@@ -13,6 +13,11 @@ export class BinaryModule implements ComponentType {
 
   public addToBinary = (obj: Object3D) => {
     this.binary.add(obj);
+  };
+
+  public addGeoAndMesh = (geo: Geometry[], material: Material[]) => {
+    this.geometries.push(...geo);
+    this.materials.push(...material);
   };
 
   public get container() {

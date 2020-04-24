@@ -151,7 +151,10 @@ class SceneCore {
     const bedroom = new Bedroom(boundaries.addToFloor);
     bedroom.createBedroom();
 
-    const binary = new Binary(binaryModule.addToBinary);
+    const binary = new Binary(
+      binaryModule.addToBinary,
+      binaryModule.addGeoAndMesh
+    );
     binary.createText();
   }
 
