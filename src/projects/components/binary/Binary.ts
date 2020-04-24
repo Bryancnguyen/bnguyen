@@ -8,12 +8,10 @@ import {
   MeshNormalMaterial,
   Geometry,
   Material,
-  Vector3,
 } from "three";
+import { calcRandomPosition } from "../utils/calcRandomPosition";
 
 export default class Binary {
-  private tempVect = new Vector3();
-
   constructor(
     private addSceneNode: (obj: Object3D) => void,
     private addGeoAndMesh: (geo: Geometry[], materials: Material[]) => void
@@ -52,19 +50,10 @@ export default class Binary {
       });
       geometries.push(geometry);
       const mesh = new Mesh(geometry, materials);
-      mesh.position.copy(this.calcPosition());
+      mesh.position.copy(calcRandomPosition());
       this.addSceneNode(mesh);
     }
     // TODO: oh this is ugly
     this.addGeoAndMesh(geometries, materials);
-  }
-
-  private calcPosition() {
-    this.tempVect.set(
-      (Math.random() - 0.5) * 5000,
-      (Math.random() - 0.5) * 5000,
-      (Math.random() - 0.5) * 5000
-    );
-    return this.tempVect;
   }
 }

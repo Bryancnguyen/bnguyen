@@ -1,8 +1,18 @@
-import { SphereGeometry, MeshPhongMaterial, Mesh, Vector3, Object3D, PointLight, AmbientLight, Geometry, Material } from 'three';
-import ComponentType from '../ComponentType';
+import {
+  SphereGeometry,
+  MeshPhongMaterial,
+  Mesh,
+  Object3D,
+  PointLight,
+  AmbientLight,
+  Geometry,
+  Material,
+} from "three";
+import ComponentType from "../ComponentType";
+import { calcRandomPosition } from "../utils/calcRandomPosition";
 
 export default class Moist implements ComponentType {
-  public readonly name = 'moist';
+  public readonly name = "moist";
   private moist: Object3D = new Object3D();
   private geometry: SphereGeometry;
   private waterGeometry: SphereGeometry;
@@ -10,17 +20,16 @@ export default class Moist implements ComponentType {
   private material2: MeshPhongMaterial;
   private geometries: Geometry[] = [];
   private materials: Material[] = [];
-  private tempVect = new Vector3();
 
   constructor() {
     this.geometry = new SphereGeometry(64, 32, 32);
     this.waterGeometry = new SphereGeometry(40, 20, 20);
 
     this.material = new MeshPhongMaterial({
-      color: '#F00000',
+      color: "#F00000",
     });
     this.material2 = new MeshPhongMaterial({
-      color: '#FFFFFF',
+      color: "#FFFFFF",
     });
 
     this.geometries.push(this.geometry);
@@ -39,7 +48,7 @@ export default class Moist implements ComponentType {
 
     for (let i = 0; i < 2000; i++) {
       const root = new Object3D();
-      root.position.copy(this.calcPosition());
+      root.position.copy(calcRandomPosition());
 
       const hydro = new Mesh(this.geometry, this.material);
       const agua1 = new Mesh(this.waterGeometry, this.material2);
@@ -48,10 +57,9 @@ export default class Moist implements ComponentType {
       agua1.position.set(40, -40, 5);
       agua2.position.set(-40, -40, 5);
 
-
-      root.rotation.x = (Math.random() * 360) * Math.PI / 180;
-      root.rotation.y = (Math.random() * 360) * Math.PI / 180;
-      root.rotation.z = (Math.random() * 360) * Math.PI / 180;
+      root.rotation.x = (Math.random() * 360 * Math.PI) / 180;
+      root.rotation.y = (Math.random() * 360 * Math.PI) / 180;
+      root.rotation.z = (Math.random() * 360 * Math.PI) / 180;
       root.add(hydro, agua1, agua2);
 
       spheres.push(root);
@@ -69,35 +77,25 @@ export default class Moist implements ComponentType {
     this.moist.add(light, light_two, lightAmbient);
   }
 
-  private calcPosition() {
-    this.tempVect.set(
-      (Math.random() - 0.5) * 5000,
-      (Math.random() - 0.5) * 5000,
-      (Math.random() - 0.5) * 5000,
-    )
-    return this.tempVect;
-  }
-
   public dispose() {
     this.geometries.forEach((geometry) => {
       geometry.dispose();
-    })
+    });
     this.materials.forEach((material) => {
       material.dispose();
-    })
+    });
   }
 
   public update() {
     const timer = 0.0002 * Date.now();
-    for ( let i = 0, il = this.moist.children.length; i < il; i ++ ) {
+    for (let i = 0, il = this.moist.children.length; i < il; i++) {
+      const sphere = this.moist.children[i];
+      sphere.updateMatrixWorld();
 
-    const sphere = this.moist.children[ i ];
-    sphere.updateMatrixWorld();
-
-    sphere.position.x = 1000 * Math.cos( timer + i );
-    sphere.position.y = 1000 * Math.sin( timer + i * 1.1 );
-    sphere.rotation.x += Math.random() * 0.05;
-    sphere.rotation.y += Math.random() * 0.05;
+      sphere.position.x = 1000 * Math.cos(timer + i);
+      sphere.position.y = 1000 * Math.sin(timer + i * 1.1);
+      sphere.rotation.x += Math.random() * 0.05;
+      sphere.rotation.y += Math.random() * 0.05;
     }
   }
 }
