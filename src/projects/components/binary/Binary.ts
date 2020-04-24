@@ -4,7 +4,6 @@ import {
   TextGeometry,
   Mesh,
   Font,
-  MeshLambertMaterial,
   MeshNormalMaterial,
   Geometry,
   Material,
