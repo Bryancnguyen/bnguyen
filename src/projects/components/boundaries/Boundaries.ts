@@ -1,9 +1,22 @@
-import { Object3D, Mesh, Vector3, MeshLambertMaterial, TextureLoader, sRGBEncoding, RepeatWrapping,
-  PlaneBufferGeometry, DoubleSide, MeshBasicMaterial, BoxBufferGeometry, Material, BufferGeometry } from 'three';
-import ComponentType from '../ComponentType';
+import {
+  Object3D,
+  Mesh,
+  Vector3,
+  MeshLambertMaterial,
+  TextureLoader,
+  sRGBEncoding,
+  RepeatWrapping,
+  PlaneBufferGeometry,
+  DoubleSide,
+  MeshBasicMaterial,
+  BoxBufferGeometry,
+  Material,
+  BufferGeometry,
+} from "three";
+import ComponentType from "../ComponentType";
 
 export class Boundaries implements ComponentType {
-  public readonly name = 'animal-crossing';
+  public readonly name = "animal-crossing";
   private boundaries: Object3D;
   private wallMaterial: MeshLambertMaterial;
   private materialTransparent: MeshBasicMaterial;
@@ -14,26 +27,39 @@ export class Boundaries implements ComponentType {
 
   constructor() {
     const loader = new TextureLoader();
-    const floorTexture = loader.load(`${process.env.PUBLIC_URL}/assets/textures/a_flooring2.png`);
+    const floorTexture = loader.load(
+      `${process.env.PUBLIC_URL}/assets/textures/a_flooring2.png`
+    );
     floorTexture.wrapS = floorTexture.wrapT = RepeatWrapping;
-    floorTexture.repeat.set( 6, 6 );
+    floorTexture.repeat.set(6, 6);
     floorTexture.anisotropy = 16;
     floorTexture.encoding = sRGBEncoding;
     this.floorMaterial = new MeshLambertMaterial({
       map: floorTexture,
+      side: DoubleSide,
     });
-    const wallTexture = loader.load(`${process.env.PUBLIC_URL}/assets/textures/wall5.jpg`);
+    const wallTexture = loader.load(
+      `${process.env.PUBLIC_URL}/assets/textures/wall5.jpg`
+    );
     wallTexture.wrapS = wallTexture.wrapT = RepeatWrapping;
-    wallTexture.repeat.set( 2, 2 );
+    wallTexture.repeat.set(2, 2);
     wallTexture.anisotropy = 16;
     wallTexture.encoding = sRGBEncoding;
     this.wallMaterial = new MeshLambertMaterial({
       side: DoubleSide,
       map: wallTexture,
     });
-    this.materialTransparent =  new MeshBasicMaterial( { transparent: true, opacity: 0, side: DoubleSide} );
+    this.materialTransparent = new MeshBasicMaterial({
+      transparent: true,
+      opacity: 0,
+      side: DoubleSide,
+    });
 
-    this.materials.push(this.floorMaterial, this.wallMaterial, this.materialTransparent);
+    this.materials.push(
+      this.floorMaterial,
+      this.wallMaterial,
+      this.materialTransparent
+    );
 
     this.boundaries = this.createWalls();
   }
@@ -61,8 +87,14 @@ export class Boundaries implements ComponentType {
   private createWallMeshes() {
     const geometry = new BoxBufferGeometry(3500, 2000, 1500);
     this.geometries.push(geometry);
-    const mesh = new Mesh(geometry, [this.wallMaterial, this.wallMaterial,
-      this.wallMaterial, this.materialTransparent, this.materialTransparent, this.materialTransparent]);
+    const mesh = new Mesh(geometry, [
+      this.wallMaterial,
+      this.wallMaterial,
+      this.wallMaterial,
+      this.materialTransparent,
+      this.materialTransparent,
+      this.materialTransparent,
+    ]);
     mesh.receiveShadow = true;
     return mesh;
   }
@@ -75,15 +107,15 @@ export class Boundaries implements ComponentType {
         this.floor.add(obj);
       }
     }
-  }
+  };
 
   private positionWalls(mesh: Object3D) {
-    mesh.position.y = - 350;
-    mesh.rotation.x = - Math.PI / 4;
+    mesh.position.y = -350;
+    mesh.rotation.x = -Math.PI / 4;
   }
 
   private positionFloor(mesh: Object3D) {
-    mesh.position.z = - 750;
+    mesh.position.z = -750;
   }
 
   public get container() {
@@ -95,10 +127,10 @@ export class Boundaries implements ComponentType {
   public dispose() {
     this.geometries.forEach((geometry) => {
       geometry.dispose();
-    })
+    });
     this.materials.forEach((material) => {
       material.dispose();
-    })
+    });
   }
 }
 
