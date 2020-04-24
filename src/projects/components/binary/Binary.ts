@@ -55,9 +55,9 @@ export default class Binary {
     const oneGeo = this.createGeo(font, "1");
     geometries.push(zeroGeo, oneGeo);
 
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 1000; i++) {
       const mesh = new Mesh(i % 2 === 0 ? zeroGeo : oneGeo, materials);
-      mesh.position.copy(calcRandomPosition());
+      mesh.position.copy(calcRandomPosition(10000));
       this.addSceneNode(mesh);
     }
     // TODO: oh this is ugly
