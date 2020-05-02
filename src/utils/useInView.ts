@@ -1,5 +1,6 @@
 import { useCallback, useState, useRef } from "react";
 
+// function to check if the ref needed is in view
 export const useInView = (offset: number = 0) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const [inView, setInView] = useState(false);
