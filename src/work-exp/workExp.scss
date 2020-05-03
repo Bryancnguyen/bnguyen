@@ -9,13 +9,19 @@
   .header {
     font-size: 26px;
     margin: 40px 0px 0px;
+    display: inline-block;
+  }
+
+  .header:hover {
+    color: rgba(255, 255, 255, 0.12);
+    cursor: pointer;
   }
 
   .sub-header {
     margin: 5px 0;
-    color: rgba(255, 255, 255, 0.60);
+    color: rgba(255, 255, 255, 0.6);
   }
-  
+
   h2 {
     margin: 10px 0;
   }
@@ -29,7 +35,8 @@
     opacity: 0.05;
   }
 
-  iframe, .tpo-photo {
+  iframe,
+  .tpo-photo {
     border: 0;
     border-radius: 5px;
   }

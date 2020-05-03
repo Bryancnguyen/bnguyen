@@ -19,7 +19,7 @@ export const useAnimation = (
     };
     frame();
     return () => cancelAnimationFrame(queuedFrame);
-  }, [startTime, duration]);
+  }, [startTime, duration, progress]);
   return { progress, reset };
 };
 

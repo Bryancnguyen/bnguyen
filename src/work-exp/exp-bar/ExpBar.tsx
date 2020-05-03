@@ -1,20 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useAnimation } from '../../animations/useAnimation';
 import { useInView } from '../../utils/useInView';
 import './expBar.scss';
 
 export const ExpBar: React.FC<ExpBarProps> = ({ color, percentage, text }) => {
-
-  const [visible, setVisible] = useState(false);
-  const { progress, reset } = useAnimation(1000);
   const { setRef, inView } = useInView();
+  return (
+    <div ref={setRef} className='exp-bar'>
+      {
+        inView &&
+        <Bar percentage={percentage} color={color} />
+      }
+      <span className='text'>{text}</span>
+    </div>);
+};
 
-  useEffect(() => {
-    setVisible(inView);
-    if (!inView) {
-      reset();
-    }
-  }, [setVisible, inView, reset]);
+const Bar: React.FC<BarProps> = ({ percentage, color }) => {
+  const { progress } = useAnimation(250);
 
   const style = {
     width: progress * percentage * 12,
@@ -23,14 +25,14 @@ export const ExpBar: React.FC<ExpBarProps> = ({ color, percentage, text }) => {
   };
 
   return (
-    <div ref={setRef} className='exp-bar'>
-      {
-        visible &&
-        <div className='bar' style={style} />
-      }
-      <span className='text'>{text}</span>
-    </div>);
-};
+    <div className='bar' style={style} />
+  )
+}
+
+interface BarProps {
+  percentage: number;
+  color: string;
+}
 
 interface ExpBarProps {
   percentage: number;
