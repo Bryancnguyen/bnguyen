@@ -2,7 +2,6 @@ export const fragmentShader = () => {
   return `
     // referenced from https://www.shadertoy.com/view/3dlBRB
     precision mediump float;
-    varying vec2 vUv;
     uniform vec2 iResolution;
     uniform float iTime;
     uniform float theta;
@@ -15,7 +14,6 @@ export const fragmentShader = () => {
     
       mat2 rot = mat2(c, s, -s, c);
 
-      vec2 vU = vUv;
 	    vec2 p = (2.0 * gl_FragCoord.xy - iResolution.xy - 1.0) / iResolution.y * rot;
 
       float d = max(abs(p.x * 2.0) + (p.y * 1.2), abs(p.y * 1.0)) - 1.0;

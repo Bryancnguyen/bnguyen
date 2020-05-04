@@ -6,6 +6,8 @@ export default class RGB implements ComponentType {
   public readonly name = "rgb";
   private rgb: Object3D = new Object3D();
   private material: RawShaderMaterial;
+  private materials: RawShaderMaterial[] = [];
+  private geometries: PlaneBufferGeometry[] = [];
 
   constructor(private getWidthHeight: () => { width: number; height: number }) {
     const geometry = new PlaneBufferGeometry(2, 2);
@@ -13,6 +15,8 @@ export default class RGB implements ComponentType {
     this.material = new RGBMaterial(width, height);
 
     const mesh = new Mesh(geometry, this.material);
+    this.materials.push(this.material);
+    this.geometries.push(geometry);
     this.rgb.add(mesh);
   }
 
@@ -20,7 +24,14 @@ export default class RGB implements ComponentType {
     return this.rgb;
   }
 
-  public dispose() {}
+  public dispose() {
+    this.materials.forEach((material) => {
+      material.dispose();
+    });
+    this.geometries.forEach((geometry) => {
+      geometry.dispose();
+    });
+  }
 
   public update(delta: number) {
     const { width, height } = this.getWidthHeight();
