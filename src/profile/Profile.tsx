@@ -67,7 +67,7 @@ export const Profile = () => {
       </p>
             <p>
               I am an aspiring engineer that continues to enjoy writing concise code and will not hesitate if a complex problem appears.
-              Just feed me coffee and I'll code anything for you.
+              Always down for a coffee and a chat about anything in tech!
       </p>
           </div>
         </div>
