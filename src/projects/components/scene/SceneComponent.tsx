@@ -1,6 +1,7 @@
 import React from 'react';
 import SceneCore from './SceneCore';
 import './scene.scss';
+import { Clock } from 'three';
 class SceneComponent extends React.Component<SceneComponentProps, {}> {
   private sceneCore: SceneCore | null = null;
 
@@ -13,7 +14,9 @@ class SceneComponent extends React.Component<SceneComponentProps, {}> {
     const canvas = document.getElementById('canvas')!;
     this.sceneCore = new SceneCore(canvas);
     this.sceneCore.init(this.props.currentProject);
-    this.sceneCore.animate();
+    const clock = new Clock();
+
+    this.sceneCore.animate(clock.getDelta());
     if (this.sceneCore) {
       // resize the canvas when the window size has changed
       window.addEventListener('resize', this.sceneCore.handleResize, false);

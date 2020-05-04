@@ -17,6 +17,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import Moist from "../moist/Moist";
 import Binary from "../binary/Binary";
 import BinaryModule from "../binary/BinaryModule";
+import RGB from "../rgb/Rgb";
 
 class SceneCore {
   private camera: PerspectiveCamera;
@@ -82,7 +83,15 @@ class SceneCore {
     this.createControls(this.camera, this.renderer);
   }
 
+  private getWidthHeight = () => {
+    return {
+      width: window.innerWidth,
+      height: this.canvasHeight,
+    };
+  };
+
   private addSceneObjects(project: string) {
+    const rgb = new RGB(this.getWidthHeight);
     const binary = new BinaryModule();
     const moist = new Moist();
     const matterportLogo = new MatterportLogo();
@@ -102,24 +111,26 @@ class SceneCore {
     // TODO: why the hell do I have two ways for mapping
     // the names of the projects should match with the component name
     this.sceneProjects.push(
+      rgb.name,
       binary.name,
       moist.name,
       matterportLogo.name,
       boundaries.name
     );
 
+    this.addSceneNode(rgb.container, rgb.name);
     this.addSceneNode(binary.container, binary.name);
     this.addSceneNode(moist.container, moist.name);
     this.addSceneNode(matterportLogo.container, matterportLogo.name);
     this.addSceneNode(boundaries.container, boundaries.name);
 
-    // show the matterport logo as its the first project
-    this.currentScene = !project ? binary.name : project;
+    // show the rgb as its the first project
+    this.currentScene = !project ? rgb.name : project;
     // lazy load third party content
     this.loadThirdPartyObjects(boundaries, binary);
 
     // must add components to get it into the update loop
-    this.components = [binary, moist, matterportLogo, boundaries];
+    this.components = [rgb, binary, moist, matterportLogo, boundaries];
   }
 
   /**
@@ -186,10 +197,8 @@ class SceneCore {
   /**
    * Update loop for components and the scene
    */
-  public animate = () => {
+  public animate = (delta: number) => {
     requestAnimationFrame(this.animate);
-    // render scene
-    this.renderScene();
     // update controls!
     if (this.controls) {
       this.controls.update();
@@ -197,8 +206,11 @@ class SceneCore {
 
     // call each components individual update loop
     this.components.forEach((c: ComponentType) => {
-      c.update();
+      c.update(delta);
     });
+
+    // render scene
+    this.renderScene();
 
     // show and hide the current and not current projects
     for (let [key, value] of Object.entries(this.sceneObjMap)) {

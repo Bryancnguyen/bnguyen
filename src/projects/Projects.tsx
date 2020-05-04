@@ -9,6 +9,10 @@ export enum ProjectTypes {
 }
 
 const projects = [{
+  name: 'rgb',
+  type: ProjectTypes.ThreeD,
+},
+{
   name: 'binary',
   type: ProjectTypes.ThreeD,
 }, {
@@ -28,11 +32,12 @@ const projects = [{
 ];
 
 const projectsMap: { [key: number]: string } = {
-  0: 'Binary',
-  1: 'Moist',
-  2: 'Matterport Logo',
-  3: 'Animal Crossing in Three',
-  4: 'Pie'
+  0: 'RGB',
+  1: 'Binary',
+  2: 'Moist',
+  3: 'Matterport Logo',
+  4: 'Animal Crossing in Three',
+  5: 'Pie'
 }
 
 const getUIProject = (projectCount: number) => {
