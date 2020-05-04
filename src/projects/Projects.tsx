@@ -32,7 +32,7 @@ const projects = [{
 ];
 
 const projectsMap: { [key: number]: string } = {
-  0: 'RGB',
+  0: 'RGB Shader',
   1: 'Binary',
   2: 'Moist',
   3: 'Matterport Logo',
