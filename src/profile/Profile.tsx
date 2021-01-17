@@ -55,7 +55,7 @@ export const Profile = () => {
         </div>
         <div className='aboutme-container'>
           <div id='about'>
-            <h1>Hello World</h1>
+            <h1>Hello!</h1>
             <p>I am currently a Software Engineer specializing in Front End Web Development.
             I've been building visuals for the web my whole career and have worked with small and large scale projects
             both in a start up and mid-sized company.

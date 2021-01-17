@@ -61,6 +61,19 @@ export const WorkExp = () => {
   return (
     <div id="work-exp">
       <Panel>
+        <div>
+        <div className="header" onClick={() => navigateToLink(Links.LYRA)}>Lyra Health</div>
+        <div className="sub-header">Software Engineer</div>
+        <p>
+          Currently making amazing things <span role="img" aria-label="rocket">🚀</span>
+        </p>
+        <img
+          className="lyra-photo"
+          alt="Lyra Logo"
+          src={process.env.PUBLIC_URL + "/images/lyra_logo.jpg"}
+        />
+        </div>
+        <div>
         <div className="header" onClick={() => navigateToLink(Links.MATTERPORT)}>Matterport</div>
         <div className="sub-header">Software Engineer</div>
         <ExpBar
@@ -90,6 +103,8 @@ export const WorkExp = () => {
           scrolling="no"
         ></iframe>
         <Badges badges={matterportBadges} />
+        </div>
+        <div>
         <div className="header" onClick={() => navigateToLink(Links.ELLIEMAE)}> Ellie Mae</div>
         <div className="sub-header">Software Engineer I / II</div>
         <ExpBar
@@ -117,6 +132,8 @@ export const WorkExp = () => {
           src={process.env.PUBLIC_URL + "/images/tpo.png"}
         />
         <Badges badges={ellieMae1Badges} />
+        </div>
+        <div>
         <div className="header" onClick={() => navigateToLink(Links.ELLIEMAE)}>Ellie Mae</div>
         <div className="sub-header">Software Engineer Dev Intern</div>
         <ExpBar
@@ -138,6 +155,8 @@ export const WorkExp = () => {
           bootstrap
             </p>
         <Badges badges={ellieMaeDevInternBadges} />
+        </div>
+        <div>
         <div className="header" onClick={() => navigateToLink(Links.ELLIEMAE)}>Ellie Mae</div>
         <div className="sub-header">QA Engineer</div>
         <ExpBar
@@ -162,6 +181,7 @@ export const WorkExp = () => {
           developed with PHP
             </p>
         <Badges badges={ellieMaeQABadges} />
+        </div>
       </Panel>
     </div>
   );

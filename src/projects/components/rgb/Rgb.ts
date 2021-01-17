@@ -38,6 +38,6 @@ export default class RGB implements ComponentType {
     this.material.uniforms["iResolution"].value.setX(width);
     this.material.uniforms["iResolution"].value.setY(height);
     this.material.uniforms["iTime"].value = delta / 1000;
-    this.material.uniforms["theta"].value = delta * 0.0005;
+    this.material.uniforms["theta"].value = delta * 0.001;
   }
 }

@@ -19,8 +19,8 @@ export const fragmentShader = () => {
       float d = max(abs(p.x * 2.0) + (p.y * 1.2), abs(p.y * 1.0)) - 1.0;
       vec3 uv = vec3(0.0, 0.0, 0.0);
 
-      uv = mix(uv, vec3(1.0), smoothstep(.04, .04, abs(d)));
-      uv = mix(uv, vec3(1.0, 0.0, 0.0), fract(d) / sqrt(d*9.));
+      uv = mix(uv, vec3(1.0), smoothstep(.008, .01, abs(d)));
+      uv = mix(uv, vec3(1.0, 0.0, 0.0), fract(d) / sqrt(d*1.0));
       
       //get the colour
       float xCol = (uv.x - (time / 8.0)) * 3.0;
